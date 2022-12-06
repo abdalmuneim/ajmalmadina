@@ -8,7 +8,6 @@ import 'package:butcity/features/compilations/data/models/compilation_model.dart
 import 'package:butcity/features/compilations/data/models/compilation_type_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/connect.dart';
 import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,8 +52,7 @@ class CompilationDataSourceImpl extends GetConnect
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-    
-      throw ServerException(message:  LocaleKeys.networkFailure.tr);
+      throw ServerException(message: LocaleKeys.networkFailure.tr);
     }
   }
 

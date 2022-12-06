@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "505137427835",
+    "project_id": "ajmalmadina-a3e55",
+    "storage_bucket": "ajmalmadina-a3e55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505137427835:android:057825244a9ea25579f9de",
+        "android_client_info": {
+          "package_name": "com.ajmalmadina.nofal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505137427835-ol9hhangs5f4s5uijvcjrp60ovm8ifb0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ajmalmadina.nofal",
+            "certificate_hash": "8f206d2c79598634722d60e4fa95deaab701145e"
+          }
+        },
+        {
+          "client_id": "505137427835-mvof1io51nqnlj3vb0pp8ud8sn2feebm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB72UDHAd7BH3H6g0dqSqYoEcmzqRn29GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505137427835-mvof1io51nqnlj3vb0pp8ud8sn2feebm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

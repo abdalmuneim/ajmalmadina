@@ -50,6 +50,9 @@ abstract class LocaleKeys {
   static const editAccount = 'editAccount';
   static const validateEmail = 'validateEmail';
   static const validateEmail2 = 'validateEmail2';
+  static const userId = 'userId';
+  static const comments = 'comments';
+  static const addComment = 'addComment';
 }
 
 String mapFailureToMessage(Failure failure) {

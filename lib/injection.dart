@@ -7,9 +7,13 @@ import 'package:butcity/features/auth_feature/domain/use_cases/login_use_case.da
 import 'package:butcity/features/auth_feature/domain/use_cases/logout_use_case.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/register_use_case.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/update_user_use_case.dart';
+import 'package:butcity/features/compilations/data/datasources/comment__data_source.dart';
 import 'package:butcity/features/compilations/data/datasources/compliation_data_source.dart';
+import 'package:butcity/features/compilations/data/repositories/comment_repository_impl.dart';
 import 'package:butcity/features/compilations/data/repositories/compilations_repository_impl.dart';
 import 'package:butcity/features/compilations/domain/repositories/compilation_repository.dart';
+import 'package:butcity/features/compilations/domain/usecases/add_comment_use_case.dart';
+import 'package:butcity/features/compilations/domain/usecases/get_comments_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_compilation_type_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_compilations_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/new_compilation_use_case.dart';
@@ -19,6 +23,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import 'core/network/network_info.dart';
+import 'features/compilations/domain/repositories/comments_repository.dart';
 
 final sl = GetIt.instance;
 
@@ -30,6 +35,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetUserUseCase(baseAuthRepository: sl()));
   sl.registerLazySingleton(() => GetCompilationsUseCase(sl()));
   sl.registerLazySingleton(() => NewCompilationsUseCase(sl()));
+  sl.registerLazySingleton(() => GetCommentsUseCase(sl()));
+  sl.registerLazySingleton(() => AddCommentsUseCase(sl()));
   sl.registerLazySingleton(() => GetCompilationTypeUseCase(sl()));
   sl.registerLazySingleton(() => LogOutUseCase(baseAuthRepository: sl()));
   sl.registerLazySingleton(() => UpdateUserUseCase(baseAuthRepository: sl()));
@@ -40,6 +47,9 @@ Future<void> init() async {
         baseAuthRemoteDataSource: sl(),
         baseAuthLocalDataSource: sl(),
         networkInfo: sl()),
+  );
+  sl.registerLazySingleton<CommentsRepository>(
+    () => CommentsRepositoryImpl(localDataSource: sl(), remoteDataSource: sl()),
   );
 
   sl.registerLazySingleton<CompilationRepository>(
@@ -53,6 +63,9 @@ Future<void> init() async {
   );
   sl.registerLazySingleton<CompilationDataSource>(
     () => CompilationDataSourceImpl(),
+  );
+  sl.registerLazySingleton<CommentsDataSource>(
+    () => CommentDataSourceImpl(),
   );
 
   // Local sources

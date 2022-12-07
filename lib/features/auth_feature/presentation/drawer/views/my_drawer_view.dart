@@ -58,12 +58,16 @@ class MyDrawer extends StatelessWidget {
                           ],
                         ),
                       ),
+
+                      /// user email
                       accountEmail: CustomText(
                         text: controller.user?.email ?? "",
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeightManager.bold,
                       ),
+
+                      /// user image
                       currentAccountPicture: controller.user?.imageForWeb !=
                               null
                           ? CircleAvatar(

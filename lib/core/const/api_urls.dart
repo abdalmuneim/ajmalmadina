@@ -7,5 +7,8 @@ class ApiUrls {
   static const String urlLogin = "$_baseUrl/auth/signIn/email";
   static const String urlRegister = "$_baseUrl/auth/register";
   static const String getCompilations = "$_baseUrl/complaints";
+  static const String getComments = "$_baseUrl/comments/";
+  static const String addComments = "$_baseUrl/comments"; 
   static const String urlSignOut = "$_baseUrl/signOut";
 }
+// 

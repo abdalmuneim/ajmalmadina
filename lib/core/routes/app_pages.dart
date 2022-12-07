@@ -7,7 +7,9 @@ import 'package:butcity/features/auth_feature/presentation/register/bindings/reg
 import 'package:butcity/features/auth_feature/presentation/register/view/register_view.dart';
 import 'package:butcity/features/auth_feature/presentation/splash/bindings/splash_binding.dart';
 import 'package:butcity/features/auth_feature/presentation/splash/views/splash_view.dart';
+import 'package:butcity/features/compilations/presentaion/compilations/bindings/comment_binding.dart';
 import 'package:butcity/features/compilations/presentaion/compilations/bindings/compilations_bindings.dart';
+import 'package:butcity/features/compilations/presentaion/compilations/view/comment_view.dart';
 import 'package:butcity/features/compilations/presentaion/new_compilation/bindings/new_compilations_bindings.dart';
 import 'package:butcity/features/compilations/presentaion/new_compilation/view/new_compilations_view.dart';
 import 'package:butcity/features/compilations/presentaion/compilations/view/compilations_view.dart';
@@ -56,6 +58,11 @@ class AppPages {
       name: _Paths.userUpdate,
       page: () => const UpdateUserDataView(),
       binding: UpdateUserBinding(),
+    ),
+    GetPage(
+      name: _Paths.comments,
+      page: () => const CommentView(),
+      binding: CommentBinding(),
     ),
   ];
 }

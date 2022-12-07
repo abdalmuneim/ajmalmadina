@@ -37,4 +37,7 @@ final Map<String, String> ar = {
   "email": 'البريد الالكتروني',
   "validateEmail": "يجب ادخال بريد الألكتروني",
   "validateEmail2": "يجب أدخال البريد الالكتروني",
+  "userId": "معرف المستخدl",
+  "comments": "التعليقات",
+  "addComment": "أضف تعليق",
 };

@@ -49,7 +49,7 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
                       return null;
                     },
                     filled: false,
-                  hintText: LocaleKeys.hintDescription.tr,
+                    hintText: LocaleKeys.hintDescription.tr,
                     labelText: LocaleKeys.enterDescription.tr,
                     maxLines: 4,
                   ),
@@ -107,14 +107,21 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
 
                   /// Your location
                   controller.position != null
-                      ? SizedBox(
-                          height: 100,
-                          child: CompilationLocation(
-                            latitude: double.tryParse(controller.lat) ?? 45,
-                            longitude: double.tryParse(controller.long) ?? 45,
+                      ? Card(
+                          child: SizedBox(
+                            height: 100,
+                            child: CompilationLocation(
+                              latitude: double.tryParse(controller.lat) ?? 45,
+                              longitude: double.tryParse(controller.long) ?? 45,
+                            ),
                           ),
                         )
-                      : const SizedBox(),
+                      : IconButton(
+                          onPressed: () => controller.getLocation(),
+                          icon: const Icon(
+                            Icons.my_location_rounded,
+                            size: 45,
+                          )),
                   if (controller.locationError.isNotEmpty)
                     const SizedBox(height: AppSize.s8),
                   if (controller.locationError.isNotEmpty)
@@ -124,22 +131,32 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
                   const SizedBox(height: 20.0),
 
                   /// choses compilation type
-                  ListTile(
-                    title: Text(LocaleKeys.compilationsType.tr),
-                    trailing: DropdownButton(
-                      items: controller.compilationTypes
-                          .map(
-                            (e) => DropdownMenuItem(
-                              value: e,
-                              child: Text(
-                                e.name ?? LocaleKeys.chosesCompilationsType.tr,
+                  Card(
+                    child: ListTile(
+                      title: Text(LocaleKeys.compilationsType.tr),
+                      trailing: controller.compilationTypes.isEmpty
+                          ? const CircularProgressIndicator()
+                          : DropdownButtonHideUnderline(
+                              child: DropdownButton(
+                                hint:
+                                    Text(LocaleKeys.chosesCompilationsType.tr),
+                                items: controller.compilationTypes
+                                    .map(
+                                      (e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(
+                                          e.name ??
+                                              LocaleKeys
+                                                  .chosesCompilationsType.tr,
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
+                                value: controller.selectedCompilationType,
+                                onChanged: (value) =>
+                                    controller.selectCompilationType(value),
                               ),
                             ),
-                          )
-                          .toList(),
-                      value: controller.selectedCompilationType,
-                      onChanged: (value) =>
-                          controller.selectCompilationType(value),
                     ),
                   ),
                   if (controller.typeError.isNotEmpty)

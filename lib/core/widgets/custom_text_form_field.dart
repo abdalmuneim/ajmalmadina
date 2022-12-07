@@ -56,45 +56,49 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      maxLines: widget.maxLines,
-      enabled: widget.enabled,
-      validator: widget.validator,
-      controller: widget.textEditingController,
-      onChanged: widget.onChange,
-      onSaved: widget.onSave,
-      textDirection: widget.textDirection,
-      obscureText: obscureText,
-      keyboardType: widget.isNumberOnly
-          ? const TextInputType.numberWithOptions(decimal: true)
-          : widget.keyboardType,
-      inputFormatters: widget.isNumberOnly
-          ? [
-              FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
-            ]
-          : null,
-      style: const TextStyle(color: Colors.black, fontSize: 25),
-      textAlign: widget.textAlign,
-      decoration: InputDecoration(
-        suffixIcon: widget.suffixIcon ?? toggleVisibility(),
-        suffixIconColor: widget.suffixIconColor,
-        prefixIcon: widget.prefixIcon,
-        prefixIconColor: widget.prefixIconColor,
-        hintText: widget.hintText,
-        labelText: widget.labelText,
-        labelStyle:
-            Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25),
-        filled: true,
-        fillColor: widget.fillColor,
-        border: InputBorder.none,
-        enabledBorder: OutlineInputBorder(
-          borderSide: widget.enabledBorder!
-              ? const BorderSide(color: Colors.green)
-              : BorderSide.none,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+    return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(widget.borderRadius)),
+      child: TextFormField(
+        maxLines: widget.maxLines,
+        enabled: widget.enabled,
+        validator: widget.validator,
+        controller: widget.textEditingController,
+        onChanged: widget.onChange,
+        onSaved: widget.onSave,
+        textDirection: widget.textDirection,
+        obscureText: obscureText,
+        keyboardType: widget.isNumberOnly
+            ? const TextInputType.numberWithOptions(decimal: true)
+            : widget.keyboardType,
+        inputFormatters: widget.isNumberOnly
+            ? [
+                FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+              ]
+            : null,
+        style: const TextStyle(color: Colors.black, fontSize: 25),
+        textAlign: widget.textAlign,
+        decoration: InputDecoration(
+          suffixIcon: widget.suffixIcon ?? toggleVisibility(),
+          suffixIconColor: widget.suffixIconColor,
+          prefixIcon: widget.prefixIcon,
+          prefixIconColor: widget.prefixIconColor,
+          hintText: widget.hintText,
+          labelText: widget.labelText,
+          labelStyle:
+              Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 25),
+          filled: true,
+          fillColor: widget.fillColor,
+          border: InputBorder.none,
+          enabledBorder: OutlineInputBorder(
+            borderSide: widget.enabledBorder!
+                ? const BorderSide(color: Colors.green)
+                : BorderSide.none,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
         ),
       ),
     );

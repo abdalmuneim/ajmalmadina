@@ -12,14 +12,19 @@ class CompilationsController extends GetxController {
   final GetCompilationsUseCase _getCompilationsUseCase;
   final GetUserUseCase _getUserUseCase;
 
-  CompilationsController(this._getCompilationsUseCase, this._getUserUseCase);
+  CompilationsController(
+    this._getCompilationsUseCase,
+    this._getUserUseCase,
+  );
+
+  bool isLoading = false;
 
   User? user;
-  bool isLoading = false;
-  List<Compilation> _compilations = [];
 
+  List<Compilation> _compilations = [];
   List<Compilation> get compilations => _compilations;
 
+  /// get compilation
   Future getCompilations() async {
     isLoading = true;
     update();
@@ -40,6 +45,7 @@ class CompilationsController extends GetxController {
     });
   }
 
+  /// get user data
   userData() async {
     var result = await _getUserUseCase();
 
@@ -58,7 +64,8 @@ class CompilationsController extends GetxController {
 
   @override
   void onInit() async {
-    await getCompilations();
+    getCompilations();
+
     userData();
     super.onInit();
   }

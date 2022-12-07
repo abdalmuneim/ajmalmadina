@@ -10,6 +10,7 @@ abstract class Routes {
   static const newCompilations = _Paths.newCompilations;
   static const aboutApp = _Paths.aboutApp;
   static const userUpdate = _Paths.userUpdate;
+  static const comments = _Paths.comments;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const newCompilations = "/newCompilations";
   static const aboutApp = "/aboutApp";
   static const userUpdate = "/userUpdate";
+  static const comments = "/comments";
 }

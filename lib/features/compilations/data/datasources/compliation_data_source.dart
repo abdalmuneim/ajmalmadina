@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:butcity/core/const/api_urls.dart';
 import 'package:butcity/core/error/exceptions.dart';
 import 'package:butcity/core/language/app_translations.dart';
+import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:butcity/features/compilations/data/models/compilation_model.dart';
 import 'package:butcity/features/compilations/data/models/compilation_type_model.dart';
 import 'package:geocoding/geocoding.dart';
@@ -12,7 +13,10 @@ import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class CompilationDataSource {
+  /// get compilation
   Future<List<CompilationModel>> getCompilations({String? token});
+
+  /// get compilation
   Future<CompilationModel> newCompilation(
       {required String desc,
       required File image,
@@ -21,6 +25,7 @@ abstract class CompilationDataSource {
       required String type,
       required String? token});
 
+  /// get compilation type
   Future<List<CompilationTypeModel>> getCompilationTypes({String? token});
 }
 
@@ -36,7 +41,8 @@ class CompilationDataSourceImpl extends GetConnect
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     });
-    final responseBody = response.body;
+    final responseBody = response.body; 
+
     if (response.statusCode == 200) {
       List<CompilationModel> compilationModels = [];
       for (var element in responseBody['data']) {

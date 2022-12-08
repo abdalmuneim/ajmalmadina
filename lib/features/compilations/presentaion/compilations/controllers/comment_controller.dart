@@ -26,14 +26,15 @@ class CommentController extends GetxController {
 
   Compilation? compilation;
   User? user;
-  List<Comment>? _comment = [];
-  List<Comment>? get comment => _comment;
+  late List<Comment> _comment = [];
+  List<Comment> get comments => _comment;
 
-  String addCommentText = '';
+  TextEditingController addCommentText = TextEditingController();
   String addCommentTextError = '';
 
+  ScrollController listScrollController = ScrollController();
+
   onChange(String value) {
-    addCommentText = value;
     if (value.isNotEmpty) {
       addCommentTextError = '';
       update();
@@ -44,8 +45,8 @@ class CommentController extends GetxController {
 
   /// get comments
   Future<void> getComments({required String compilationId}) async {
-    if (comment!.isNotEmpty &&
-        compilationId == comment!.first.complaintId.toString()) {
+    if (comments.isNotEmpty &&
+        compilationId == comments.first.complaintId.toString()) {
     } else {
       isLoading = true;
       update();
@@ -63,8 +64,8 @@ class CommentController extends GetxController {
       ToastManager.showError(l.message);
     }, (r) {
       _comment = r;
+
       isLoading = false;
-      update();
     });
   }
 
@@ -73,24 +74,26 @@ class CommentController extends GetxController {
     addCommentTextError = '';
     isLoading = true;
     update();
-    if (addCommentText.isEmpty) {
+    if (addCommentText.text.isEmpty) {
       addCommentTextError = LocaleKeys.addComment.tr;
       update();
     }
-    if (addCommentText.isNotEmpty) {
+    if (addCommentText.text.isNotEmpty) {
       final response = await _addCommentUseCase(
         compilationId: Get.arguments[CommentFields.complaintId],
-        content: addCommentText,
+        content: addCommentText.text,
       );
       response.fold((l) {
         isLoading = false;
         update();
-      },
-          (r) => {
-                print(r),
-                isLoading = false,
-                update(),
-              });
+      }, (r) {
+        isLoading = false;
+        addCommentText.clear();
+        getComments(compilationId: Get.arguments[CommentFields.complaintId]);
+        listScrollController.animateTo(0.0,
+            duration: const Duration(microseconds: 300), curve: Curves.easeOut);
+        update();
+      });
     }
     isLoading = false;
     update();
@@ -113,13 +116,18 @@ class CommentController extends GetxController {
     });
   }
 
+  /// refresh indicator
+  onRefresh() {
+    getComments(compilationId: Get.arguments[CommentFields.complaintId]);
+  }
+
   @override
   void onInit() {
     if (Get.arguments != null) {
       compilation = Get.arguments[CommentFields.content];
       getComments(compilationId: Get.arguments[CommentFields.complaintId]);
     }
-      userData();
+    userData();
     super.onInit();
   }
 }

@@ -3,7 +3,7 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int id;
+  final int? id;
   final String name;
   final String email;
   final String imageForWeb;
@@ -13,8 +13,8 @@ class User extends Equatable {
     required this.id,
     required this.name,
     required this.email,
-    required this.createdAt,
     required this.imageForWeb,
+    required this.createdAt,
   });
 
   @override
@@ -22,5 +22,6 @@ class User extends Equatable {
         id,
         name,
         email,
+        createdAt,
       ];
 }

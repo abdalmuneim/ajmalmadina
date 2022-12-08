@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:butcity/core/const/api_urls.dart';
 import 'package:butcity/core/error/exceptions.dart';
-import 'package:butcity/core/language/app_translations.dart';
-import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:butcity/features/compilations/data/models/compilation_model.dart';
 import 'package:butcity/features/compilations/data/models/compilation_type_model.dart';
 import 'package:geocoding/geocoding.dart';
@@ -14,7 +12,7 @@ import 'package:http/http.dart' as http;
 
 abstract class CompilationDataSource {
   /// get compilation
-  Future<List<CompilationModel>> getCompilations({String? token});
+  Future<List<CompilationModel>> getCompilations({required String token});
 
   /// get compilation
   Future<CompilationModel> newCompilation(
@@ -32,16 +30,13 @@ abstract class CompilationDataSource {
 class CompilationDataSourceImpl extends GetConnect
     implements CompilationDataSource {
   @override
-  Future<List<CompilationModel>> getCompilations({String? token}) async {
-    if (token == null) {
-      throw EmptyCacheException();
-    }
-
+  Future<List<CompilationModel>> getCompilations(
+      {required String token}) async {
     final response = await get(ApiUrls.getCompilations, headers: {
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     });
-    final responseBody = response.body; 
+    final responseBody = response.body;
 
     if (response.statusCode == 200) {
       List<CompilationModel> compilationModels = [];
@@ -58,7 +53,10 @@ class CompilationDataSourceImpl extends GetConnect
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-      throw ServerException(message: LocaleKeys.networkFailure.tr);
+      return await Future.delayed(
+        const Duration(seconds: 2),
+        () => getCompilations(token: token),
+      );
     }
   }
 
@@ -123,7 +121,10 @@ class CompilationDataSourceImpl extends GetConnect
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-      throw ServerException(message: responseBody['massage']);
+      return Future.delayed(
+        Duration.zero,
+        () => getCompilationTypes(token: token),
+      );
     }
   }
 }

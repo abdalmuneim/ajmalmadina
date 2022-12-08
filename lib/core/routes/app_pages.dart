@@ -56,7 +56,7 @@ class AppPages {
 
     GetPage(
       name: _Paths.userUpdate,
-      page: () => const UpdateUserDataView(),
+      page: () =>   UpdateUserDataView(),
       binding: UpdateUserBinding(),
     ),
     GetPage(

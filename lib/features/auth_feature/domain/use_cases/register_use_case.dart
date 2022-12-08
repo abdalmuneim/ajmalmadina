@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:butcity/core/error/failures.dart';
 import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/repositories/base_auth_repository.dart';
@@ -13,12 +14,14 @@ class RegisterUseCase {
     required String email,
     required String password,
     required String confirmPassword,
+    required File imageForWeb,
   }) async {
     return await baseAuthRepository.register(
       name: name,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
+      imageForWeb: imageForWeb,
     );
   }
 }

@@ -6,7 +6,7 @@ class UpdateUserBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<UpdateUserController>(
-      () => UpdateUserController(sl()),
+      () => UpdateUserController(sl(), sl()),
     );
   }
 }

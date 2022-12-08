@@ -28,6 +28,7 @@ class AuthRespoitory implements BaseAuthRepository {
     required String name,
     required String email,
     required String password,
+    required File imageForWeb,
     required String confirmPassword,
   }) async {
     if (await networkInfo.isConnected) {
@@ -36,7 +37,8 @@ class AuthRespoitory implements BaseAuthRepository {
             name: name,
             email: email,
             password: password,
-            confirmPassword: confirmPassword);
+            confirmPassword: confirmPassword,
+            imageForWeb: imageForWeb);
 
         await baseAuthLocalDataSource.writeUser(user: user);
         await baseAuthLocalDataSource.writeToken(token: user.token);
@@ -104,13 +106,18 @@ class AuthRespoitory implements BaseAuthRepository {
   @override
   Future<Either<Failure, UserModel>> updateUser({
     required String name,
-    required File image,
+    required File imageForWeb,
+    required String password,
+    required String confirmPassword,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final user = await baseAuthRemoteDataSource.updateUser(
           name: name,
-          image: image,
+          imageForWeb: imageForWeb,
+          token: await baseAuthLocalDataSource.readToken(),
+          password: password,
+          confirmPassword: confirmPassword,
         );
 
         await baseAuthLocalDataSource.writeUser(user: user);

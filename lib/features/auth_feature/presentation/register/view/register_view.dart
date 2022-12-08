@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/assets_manager.dart';
+import 'package:butcity/core/resources/values_manager.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/core/widgets/custom_text_form_field.dart';
 import 'package:butcity/features/auth_feature/presentation/register/controllers/register_controller.dart';
@@ -29,6 +30,7 @@ class RegisterView extends StatelessWidget {
                   children: [
                     const SizedBox(height: 50),
 
+                    /// top content
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -56,6 +58,49 @@ class RegisterView extends StatelessWidget {
                       child: Image.asset(AssetsManager.logo),
                     ),
                     const SizedBox(height: 50),
+
+                    /// upload image
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () => controller.getImage(),
+                          style: Theme.of(context)
+                              .elevatedButtonTheme
+                              .style
+                              ?.copyWith(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(AppSize.s100),
+                                    ),
+                                  ),
+                                  minimumSize: MaterialStateProperty.all(
+                                      const Size(200, 50)),
+                                  textStyle: MaterialStateProperty.all<
+                                          TextStyle>(
+                                      const TextStyle(color: Colors.black))),
+                          child: CustomText(
+                            text: LocaleKeys.tackPhoto.tr,
+                          ),
+                        ),
+                        if (controller.userImage == null)
+                          const SizedBox()
+                        else
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage:
+                                Image.file(controller.userImage!).image,
+                          )
+                      ],
+                    ),
+
+                    const SizedBox(height: 20),
 
                     /// text form field name
                     CustomTextFormField(

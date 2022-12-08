@@ -43,7 +43,10 @@ class CommentDataSourceImpl extends GetConnect implements CommentsDataSource {
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-      throw ServerException(message: responseBody['massage']);
+      return await Future.delayed(
+        const Duration(seconds: 2),
+        () => getComments(token: token, compilationId: compilationId),
+      );
     }
   }
 
@@ -64,12 +67,9 @@ class CommentDataSourceImpl extends GetConnect implements CommentsDataSource {
         'Authorization': 'Bearer $token',
       },
     );
-
     if (response.statusCode == 200) {
-      print('-------------------> ${response.body}');
       return CommentModel.fromMap(response.body['data']);
     } else {
-      print('-------------------> ${response.body}');
       throw ServerException(message: response.body['error']);
     }
   }

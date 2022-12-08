@@ -48,7 +48,6 @@ class MyDrawer extends StatelessWidget {
                               onPressed: () {
                                 Get.toNamed(Routes.userUpdate);
                               },
-                              padding: const EdgeInsets.all(15),
                               icon: const Icon(
                                 Icons.edit,
                                 color: Colors.white,

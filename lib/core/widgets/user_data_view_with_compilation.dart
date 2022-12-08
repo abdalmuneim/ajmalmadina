@@ -3,8 +3,8 @@ import 'package:butcity/features/compilations/domain/entities/compilation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 
-class CompilationsWidget extends StatelessWidget {
-  const CompilationsWidget(
+class UserDataViewWithCompilation extends StatelessWidget {
+  const UserDataViewWithCompilation(
       {super.key, required this.user, required this.compilation});
   final User user;
   final Compilation compilation;
@@ -20,24 +20,19 @@ class CompilationsWidget extends StatelessWidget {
             child: ListTile(
               /// user image
               leading: DecoratedBox(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(500),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 5,
-                          offset: Offset(0, 0)),
-                    ]),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(500),
-                  child: Image.network(
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit.cover,
-                    user.imageForWeb,
-                  ),
-                ),
-              ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(500),
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 5,
+                            offset: Offset(0, 0)),
+                      ]),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      user.imageForWeb,
+                    ),
+                  )),
 
               /// user name
               title: Text(
@@ -51,7 +46,7 @@ class CompilationsWidget extends StatelessWidget {
               ),
 
               /// compilation date time
-              subtitle: Row(mainAxisSize: MainAxisSize.min, children: [
+              subtitle: Row(children: [
                 const Icon(
                   Icons.calendar_month,
                   color: Colors.yellow,

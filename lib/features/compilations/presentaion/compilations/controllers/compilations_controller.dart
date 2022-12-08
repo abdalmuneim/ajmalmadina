@@ -58,15 +58,15 @@ class CompilationsController extends GetxController {
       ToastManager.showError(mapFailureToMessage(failure));
     }, (right) {
       user = right;
+      print(user!.imageForWeb);
       update();
     });
   }
 
   @override
   void onInit() async {
-    getCompilations();
-
-    userData();
+    await getCompilations();
+    await userData();
     super.onInit();
   }
 }

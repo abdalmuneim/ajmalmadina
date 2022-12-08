@@ -1,4 +1,5 @@
 import 'package:butcity/core/language/app_translations.dart';
+import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:butcity/features/compilations/presentaion/compilations/controllers/compilations_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,12 +17,15 @@ class CustomNetworkImage extends StatelessWidget {
         child: Image.network(
           fit: BoxFit.cover,
           url,
-          errorBuilder: (BuildContext context, _, stackTrace) => Center(
-              child: Text(
-            LocaleKeys.imageNotLoaded.tr,
-          )),
+          errorBuilder: (BuildContext context, _, stackTrace) {
+           
+            return Center(
+                child: Text(
+              LocaleKeys.imageNotLoaded.tr,
+            ));
+          },
           loadingBuilder: (context, Widget child, ImageChunkEvent? url) {
-            if (url == null) {
+            if (url == null) { 
               return child;
             } else {
               return Center(

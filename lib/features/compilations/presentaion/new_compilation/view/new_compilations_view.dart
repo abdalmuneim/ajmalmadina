@@ -2,9 +2,9 @@ import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/core/widgets/custom_text_form_field.dart';
+import 'package:butcity/core/widgets/location.dart';
 import 'package:butcity/features/compilations/presentaion/new_compilation/controller/new_compilation_controller.dart';
 import 'package:butcity/core/resources/values_manager.dart';
-import 'package:butcity/core/widgets/map.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -107,21 +107,30 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
 
                   /// Your location
                   controller.position != null
-                      ? Card(
-                          child: SizedBox(
-                            height: 100,
-                            child: CompilationLocation(
-                              latitude: double.tryParse(controller.lat) ?? 45,
-                              longitude: double.tryParse(controller.long) ?? 45,
+                      ? SizedBox(
+                          height: 250,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: MyLocation(
+                              lat: double.tryParse(controller.lat) ?? 45,
+                              long: double.tryParse(controller.long) ?? 45,
                             ),
                           ),
                         )
-                      : IconButton(
-                          onPressed: () => controller.getLocation(),
-                          icon: const Icon(
-                            Icons.my_location_rounded,
-                            size: 45,
-                          )),
+                      : Column(
+                          children: [
+                            IconButton(
+                              onPressed: () => controller.getLocation(),
+                              icon: const Icon(
+                                Icons.my_location_rounded,
+                                color: Colors.green,
+                                size: 45,
+                              ),
+                            ),
+                            Text(LocaleKeys.getLocation.tr),
+                          ],
+                        ),
                   if (controller.locationError.isNotEmpty)
                     const SizedBox(height: AppSize.s8),
                   if (controller.locationError.isNotEmpty)

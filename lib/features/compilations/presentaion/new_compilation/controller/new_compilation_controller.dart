@@ -115,7 +115,7 @@ class NewCompilationController extends GetxController {
 
   List<CompilationType> compilationTypes = [];
 
-  Future getCompilations() async {
+  Future getCompilationsType() async {
     final response = await getCompilationTypeUseCase();
 
     response.fold(
@@ -208,7 +208,7 @@ class NewCompilationController extends GetxController {
   @override
   void onInit() async {
     await getLocation();
-    await getCompilations();
+    await getCompilationsType();
     super.onInit();
   }
 

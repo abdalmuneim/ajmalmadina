@@ -21,7 +21,7 @@ class CompilationLocation extends StatelessWidget {
         'zoom': '18',
         'size': '600x300',
         'maptype': 'roadmap',
-        'key': 'AIzaSyCviU_6acdow5dzNN-P8FpIVFwS3s8H4FE',
+        'key': 'AIzaSyCfNOpZuLgjnbYFQzzgM4YG8phYHkP4XnE',
         'markers': 'color:red|$latitude,$longitude'
       },
     );

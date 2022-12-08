@@ -10,11 +10,13 @@ abstract class AppTranslation {
 
 abstract class LocaleKeys {
   static const networkFailure = 'networkFailure';
+  static const edit = 'edit';
   static const incorrectEmailAddress = 'incorrectEmailAddress';
   static const incorrectNameAddress = 'incorrectNameAddress';
   static const emptyEmailAddress = 'emptyEmailAddress';
   static const emptyPassword = 'emptyPassword';
   static const morePasswordChars = 'morePasswordChars';
+  static const refresh = 'refresh';
   static const validateError = 'validateError';
   static const confirmPassValidate = 'confirmPassValidate';
   static const noImage = 'noImage';
@@ -53,6 +55,9 @@ abstract class LocaleKeys {
   static const userId = 'userId';
   static const comments = 'comments';
   static const addComment = 'addComment';
+  static const tryAgin = 'tryAgin';
+  static const getLocation = 'getLocation';
+  static const noComments = 'noComments';
 }
 
 String mapFailureToMessage(Failure failure) {

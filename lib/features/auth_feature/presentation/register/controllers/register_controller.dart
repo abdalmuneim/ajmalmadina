@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'dart:io';
 
 import 'package:butcity/core/routes/app_pages.dart';
@@ -8,7 +6,6 @@ import 'package:butcity/features/auth_feature/domain/use_cases/register_use_case
 import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   final RegisterUseCase _registerUseCase;
@@ -43,7 +40,7 @@ class RegisterController extends GetxController {
     final response = await _registerUseCase(
         confirmPassword: confPassCtrl.text,
         email: emailCtrl.text,
-        imageForWeb: userImage!,
+        imageForWeb: userImage,
         name: nameCtrl.text,
         password: passCtrl.text);
     isLoading = false;

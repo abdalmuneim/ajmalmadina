@@ -25,7 +25,7 @@ class AllCompilationsView extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
-          onPressed: () => Get.offAllNamed(Routes.newCompilations),
+          onPressed: () => Get.toNamed(Routes.newCompilations),
           child: const Icon(
             Icons.add,
           ),

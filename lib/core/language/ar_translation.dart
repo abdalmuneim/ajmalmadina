@@ -48,7 +48,7 @@ final Map<String, String> ar = {
   "comments": "التعليقات",
   "addComment": "أضف تعليق",
   "tryAgin": 'اعد المحاولة',
-  "getLocation": 'أضغلط للحصول علي العوان',
+  "getLocation": 'أضغط للحصول علي العنوان',
   "noComments": 'لا يوجد تعليقات',
   "refresh": 'اسحب لاسفل لإعاده التحميل',
 };

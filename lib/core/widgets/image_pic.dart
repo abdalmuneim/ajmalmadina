@@ -10,6 +10,7 @@ class ImagePic {
   static Future<File?> _getImage(ImageSource source) async {
     XFile? imageResult = await ImagePicker().pickImage(
       source: source,
+      preferredCameraDevice: CameraDevice.front,
       imageQuality: 20,
     );
     if (imageResult != null) {
@@ -30,8 +31,7 @@ class ImagePic {
               /// camera
               InkWell(
                 onTap: () async {
-                  var result = await _getImage(ImageSource.camera);
-                  print(result?.path);
+                  File? result = await _getImage(ImageSource.camera);
                   Get.back(result: result);
                 },
                 child: Column(
@@ -55,9 +55,9 @@ class ImagePic {
               /// gallery
               InkWell(
                 onTap: () async {
-                  await _getImage(ImageSource.gallery);
+                  File? result = await _getImage(ImageSource.gallery);
                   if (Get.isBottomSheetOpen ?? false) {
-                    Get.back();
+                    Get.back(result: result);
                   }
                 },
                 child: Column(

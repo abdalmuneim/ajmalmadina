@@ -7,13 +7,19 @@ class MyLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      initialCameraPosition:
-          CameraPosition(target: LatLng(lat, long), zoom: 18),
-      mapType: MapType.normal,
-      myLocationEnabled: true,
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: false,
+    return SizedBox(
+      height: 250,
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: GoogleMap(
+          initialCameraPosition:
+              CameraPosition(target: LatLng(lat, long), zoom: 18),
+          mapType: MapType.normal,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: false,
+          zoomControlsEnabled: false,
+        ),
+      ),
     );
   }
 }

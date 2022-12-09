@@ -10,7 +10,6 @@ import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case
 import 'package:butcity/features/auth_feature/domain/use_cases/user_update_use_case.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class UserUpdateController extends GetxController {
   final UserUpdateUseCase _userUpdateUseCase;
@@ -60,7 +59,7 @@ class UserUpdateController extends GetxController {
       isLoading = false;
       update();
       ToastManager.showSuccess(LocaleKeys.successful);
-      Get.offAllNamed(Routes.myCompilations);
+      Get.offAllNamed(Routes.allCompilations);
     });
 
     isLoading = false;

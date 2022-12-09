@@ -22,7 +22,7 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.green,
-          title: const Text('اضافة شكوى جديدة'),
+          title: Text(LocaleKeys.addNewCompilations.tr),
           leading: IconButton(
               onPressed: () {
                 Get.offAllNamed(Routes.myCompilations);
@@ -107,16 +107,9 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
 
                   /// Your location
                   controller.position != null
-                      ? SizedBox(
-                          height: 250,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: MyLocation(
-                              lat: double.tryParse(controller.lat) ?? 45,
-                              long: double.tryParse(controller.long) ?? 45,
-                            ),
-                          ),
+                      ? MyLocation(
+                          lat: double.tryParse(controller.lat) ?? 45,
+                          long: double.tryParse(controller.long) ?? 45,
                         )
                       : Column(
                           children: [

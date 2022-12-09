@@ -45,7 +45,7 @@ class MyDrawer extends StatelessWidget {
                             /// edit button
                             IconButton(
                               onPressed: () {
-                                Get.offAllNamed(Routes.userUpdate);
+                                Get.toNamed(Routes.userUpdate);
                               },
                               icon: const Icon(
                                 Icons.edit,
@@ -104,7 +104,7 @@ class MyDrawer extends StatelessWidget {
                       title: LocaleKeys.addCompilations.tr,
                       icon: Icons.add_moderator_outlined,
                       onTap: () {
-                        Get.offAllNamed(Routes.newCompilations);
+                        Get.toNamed(Routes.newCompilations);
                       },
                     ),
                     const Divider(),

@@ -14,7 +14,7 @@ class RegisterUseCase {
     required String email,
     required String password,
     required String confirmPassword,
-    required File imageForWeb,
+    File? imageForWeb,
   }) async {
     return await baseAuthRepository.register(
       name: name,

@@ -21,7 +21,7 @@ class CommentView extends StatelessWidget {
             children: [
               /// image
               SizedBox(
-                height: 200,
+                height: 250,
                 child: Stack(
                   fit: StackFit.expand,
                   children: [

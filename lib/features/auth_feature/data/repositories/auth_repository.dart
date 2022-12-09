@@ -27,7 +27,7 @@ class AuthRespoitory implements BaseAuthRepository {
     required String name,
     required String email,
     required String password,
-    required File imageForWeb,
+    File? imageForWeb,
     required String confirmPassword,
   }) async {
     if (await networkInfo.isConnected) {

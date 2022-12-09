@@ -6,7 +6,6 @@ import 'package:butcity/core/widgets/user_data_view_with_compilation.dart';
 import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
-import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:butcity/features/compilations/presentation/my_compilations/controllers/my_compilations_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +23,7 @@ class MyCompilationsView extends StatelessWidget {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
-          onPressed: () => Get.offAllNamed(Routes.newCompilations),
+          onPressed: () => Get.toNamed(Routes.newCompilations),
           child: const Icon(
             Icons.add,
           ),

@@ -14,7 +14,7 @@ abstract class BaseAuthRemoteDataSource {
     required String name,
     required String email,
     required String password,
-    required File imageForWeb,
+    File? imageForWeb,
     required String confirmPassword,
   });
   Future<UserModel> userUpdate({
@@ -41,7 +41,7 @@ class AuthRemoteDataSource extends GetConnect
     required String email,
     required String password,
     required String confirmPassword,
-    required File imageForWeb,
+    File? imageForWeb,
   }) async {
     var request = http.MultipartRequest('POST', Uri.parse(ApiUrls.register));
 
@@ -49,8 +49,10 @@ class AuthRemoteDataSource extends GetConnect
     request.fields['email'] = email;
     request.fields['password'] = password;
     request.fields['password_confirmation'] = confirmPassword;
-    request.files
-        .add(await http.MultipartFile.fromPath('image', imageForWeb.path));
+    if (imageForWeb != null) {
+      request.files
+          .add(await http.MultipartFile.fromPath('image', imageForWeb.path));
+    }
     var headers = {
       'Accept': 'application/json',
     };

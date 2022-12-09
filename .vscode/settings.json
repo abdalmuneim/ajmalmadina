@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "geolocator"
-    ]
+    ],
+    "files.autoSave": "onWindowChange",
+    "dart.flutterGenerateLocalizationsOnSave": "all",
+    "dart.runPubGetOnNestedProjects": "both"
 }

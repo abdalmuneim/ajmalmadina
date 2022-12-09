@@ -89,7 +89,7 @@ class NewCompilationController extends GetxController {
   File? get image => _image;
 
   getImage() async {
-    _image = await ImagePic.getImage(ImageSource.camera);
+    _image = await ImagePic.showBottomSheetPic();
     if (_image != null) {
       imageError = '';
       update();

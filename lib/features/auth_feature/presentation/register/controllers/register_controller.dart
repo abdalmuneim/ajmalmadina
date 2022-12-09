@@ -31,7 +31,7 @@ class RegisterController extends GetxController {
 
   File? userImage;
   getImage() async {
-    userImage = await ImagePic.getImage(ImageSource.gallery);
+    userImage = await ImagePic.showBottomSheetPic();
     update();
   }
 

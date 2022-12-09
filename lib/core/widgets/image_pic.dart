@@ -7,21 +7,19 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePic {
-  static File? image;
-  static Future<File?> getImage(ImageSource source) async {
+  static Future<File?> _getImage(ImageSource source) async {
     XFile? imageResult = await ImagePicker().pickImage(
       source: source,
       imageQuality: 20,
     );
     if (imageResult != null) {
-      image = File(imageResult.path);
-      return image;
+      return File(imageResult.path);
     } else {
       return null;
     }
   }
 
-  static Future<void> showBottomSheetPic() async => await Get.bottomSheet(
+  static Future<File?> showBottomSheetPic() async => await Get.bottomSheet(
         Container(
           color: Colors.white,
           height: 100,
@@ -32,10 +30,9 @@ class ImagePic {
               /// camera
               InkWell(
                 onTap: () async {
-                  await getImage(ImageSource.camera);
-                  if (Get.isBottomSheetOpen!) {
-                    Get.back();
-                  }
+                  var result = await _getImage(ImageSource.camera);
+                  print(result?.path);
+                  Get.back(result: result);
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +55,7 @@ class ImagePic {
               /// gallery
               InkWell(
                 onTap: () async {
-                  await getImage(ImageSource.gallery);
+                  await _getImage(ImageSource.gallery);
                   if (Get.isBottomSheetOpen ?? false) {
                     Get.back();
                   }
@@ -84,8 +81,4 @@ class ImagePic {
           ),
         ),
       );
-
-  deleteImage() {
-    image = null;
-  }
 }

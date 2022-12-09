@@ -33,7 +33,7 @@ class UserUpdateController extends GetxController {
   File? userImage;
   late String imageUrlUser;
   getImage() async {
-    userImage = await ImagePic.getImage(ImageSource.gallery);
+    userImage = await ImagePic.showBottomSheetPic();
     update();
   }
 

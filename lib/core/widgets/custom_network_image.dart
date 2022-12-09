@@ -1,5 +1,5 @@
 import 'package:butcity/core/language/app_translations.dart';
-import 'package:butcity/features/compilations/presentation/compilations/controllers/compilations_controller.dart';
+import 'package:butcity/features/compilations/presentation/my_compilations/controllers/my_compilations_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +10,7 @@ class CustomNetworkImage extends StatelessWidget {
   final double borderRadius;
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CompilationsController>(builder: (context) {
+    return GetBuilder<MyCompilationsController>(builder: (context) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: Image.network(

@@ -26,7 +26,9 @@ abstract class LocaleKeys {
   static const imageNotLoaded = 'imageNotLoaded';
   static const locationError = 'locationError';
 
-  static const compilations = 'compilations';
+  static const update = 'update';
+  static const myCompilations = 'myCompilations';
+  static const allCompilations = 'compilations';
   static const noCompilations = 'noCompilations';
   static const addCompilations = 'addCompilations';
   static const addNewCompilations = 'addNewCompilations';

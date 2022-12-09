@@ -1,16 +1,7 @@
 import 'dart:convert';
 
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/features/compilations/domain/entities/comment.dart';
-
-class CommentFields {
-  static const String id = "id";
-  static const String userId = "user_id";
-  static const String complaintId = "complaint_id";
-  static const String content = "content";
-  static const String status = "status";
-  static const String createdAt = "created_at";
-  static const String updatedAt = "updated_at";
-}
 
 class CommentModel extends Comment {
   const CommentModel({
@@ -25,13 +16,13 @@ class CommentModel extends Comment {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      CommentFields.id: id,
-      CommentFields.complaintId: complaintId,
-      CommentFields.userId: userId,
-      CommentFields.content: content,
-      CommentFields.status: status,
-      CommentFields.createdAt: createdAt,
-      CommentFields.updatedAt: updatedAt,
+      Fields.id: id,
+      Fields.complaintId: complaintId,
+      Fields.userId: userId,
+      Fields.content: content,
+      Fields.status: status,
+      Fields.createdAt: createdAt,
+      Fields.updatedAt: updatedAt,
     };
   }
 
@@ -57,24 +48,19 @@ class CommentModel extends Comment {
 
   factory CommentModel.fromMap(Map<String, dynamic> map) {
     return CommentModel(
-      id: map[CommentFields.id] != null ? map[CommentFields.id] as int : null,
-      complaintId: map[CommentFields.complaintId] != null
-          ? map[CommentFields.complaintId] as int
+      id: map[Fields.id] != null ? map[Fields.id] as int : null,
+      complaintId: map[Fields.complaintId] != null
+          ? map[Fields.complaintId] as int
           : null,
-      userId: map[CommentFields.userId] != null
-          ? map[CommentFields.userId] as int
+      userId: map[Fields.userId] != null ? map[Fields.userId] as int : null,
+      content:
+          map[Fields.content] != null ? map[Fields.content] as String : null,
+      status: map[Fields.status] != null ? map[Fields.status] as int : null,
+      createdAt: map[Fields.createdAt] != null
+          ? map[Fields.createdAt] as String
           : null,
-      content: map[CommentFields.content] != null
-          ? map[CommentFields.content] as String
-          : null,
-      status: map[CommentFields.status] != null
-          ? map[CommentFields.status] as int
-          : null,
-      createdAt: map[CommentFields.createdAt] != null
-          ? map[CommentFields.createdAt] as String
-          : null,
-      updatedAt: map[CommentFields.updatedAt] != null
-          ? map[CommentFields.updatedAt] as String
+      updatedAt: map[Fields.updatedAt] != null
+          ? map[Fields.updatedAt] as String
           : null,
     );
   }

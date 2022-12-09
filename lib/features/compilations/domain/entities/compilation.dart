@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:butcity/features/auth_feature/domain/entities/user.dart';
+import 'package:butcity/features/compilations/domain/entities/compilation_type.dart';
 import 'package:equatable/equatable.dart';
 
 class Compilation extends Equatable {
@@ -15,20 +17,25 @@ class Compilation extends Equatable {
   final int? userId;
   final String? imageForWeb;
   final String? location;
+  final User? user;
+  final CompilationType? types;
 
-  const Compilation(
-      {this.id,
-      this.type,
-      this.description,
-      this.image,
-      this.lat,
-      this.long,
-      this.status,
-      this.createdAt,
-      this.updatedAt,
-      this.location,
-      this.userId,
-      this.imageForWeb});
+  const Compilation({
+    this.id,
+    this.user,
+    this.types,
+    this.type,
+    this.description,
+    this.image,
+    this.lat,
+    this.long,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.location,
+    this.userId,
+    this.imageForWeb,
+  });
   @override
   List<Object?> get props => [
         id,
@@ -43,5 +50,7 @@ class Compilation extends Equatable {
         userId,
         location,
         imageForWeb,
+        user,
+        types,
       ];
 }

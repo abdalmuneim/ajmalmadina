@@ -19,9 +19,27 @@ class CompilationRepositoryImpl implements CompilationRepository {
       {required this.remoteDataSource, required this.localDataSource});
 
   @override
-  Future<Either<Failure, List<CompilationModel>>> getCompilations() async {
+  Future<Either<Failure, List<CompilationModel>>> allCompilations() async {
     try {
-      final result = await remoteDataSource.getCompilations(
+      final result = await remoteDataSource.allCompilations(
+          token: await localDataSource.readToken());
+
+      return Right(result);
+    } on ServerException catch (serverException) {
+      return Left(ServerFailure(message: serverException.message));
+    } on SocketException {
+      return const Left(ConnectionFailure());
+    } on UnauthorizedException {
+      localDataSource.removeToken();
+      localDataSource.removeUser();
+      return const Left(UnAuthenticatedFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CompilationModel>>> myCompilations() async {
+    try {
+      final result = await remoteDataSource.myCompilations(
           token: await localDataSource.readToken());
 
       return Right(result);

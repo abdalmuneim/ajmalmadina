@@ -78,7 +78,7 @@ class NewCompilationController extends GetxController {
       }, (r) {
         isLoading = false;
         update();
-        Get.offAllNamed(Routes.compilations);
+        Get.offAllNamed(Routes.myCompilations);
         ToastManager.showSuccess('لقد تم اضافة شكوي بنجاح!');
       });
     }

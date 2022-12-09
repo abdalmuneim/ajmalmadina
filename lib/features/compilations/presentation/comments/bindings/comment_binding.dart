@@ -1,4 +1,4 @@
-import 'package:butcity/features/compilations/presentation/compilations/controllers/comment_controller.dart';
+import 'package:butcity/features/compilations/presentation/comments/controllers/comment_controller.dart';
 import 'package:butcity/injection.dart';
 import 'package:get/get.dart';
 

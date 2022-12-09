@@ -25,7 +25,7 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
           title: const Text('اضافة شكوى جديدة'),
           leading: IconButton(
               onPressed: () {
-                Get.offAllNamed(Routes.compilations);
+                Get.offAllNamed(Routes.myCompilations);
               },
               icon: const Icon(Icons.arrow_back)),
           centerTitle: true,

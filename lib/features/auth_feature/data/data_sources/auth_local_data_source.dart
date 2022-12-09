@@ -12,7 +12,7 @@ abstract class BaseAuthLocalDataSource {
   Future<Unit> removeUser();
   Future<String> readToken();
 
-  Future<Unit> writeToken({required String token});
+  Future<Unit> writeToken({required String? token});
   Future<Unit> removeToken();
 }
 
@@ -60,7 +60,7 @@ class AuthLocalDataSource implements BaseAuthLocalDataSource {
   }
 
   @override
-  Future<Unit> writeToken({required String token}) async {
+  Future<Unit> writeToken({required String? token}) async {
     try {
       await flutterSecureStorage.write(
           key: AppStrings.USER_STORAGE, value: token);

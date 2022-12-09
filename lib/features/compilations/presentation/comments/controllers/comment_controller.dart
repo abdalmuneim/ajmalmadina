@@ -1,3 +1,4 @@
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/core/error/failures.dart';
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/toast_manager.dart';
@@ -76,7 +77,7 @@ class CommentController extends GetxController {
     }
     if (addCommentText.text.isNotEmpty) {
       final response = await _addCommentUseCase(
-        compilationId: Get.arguments[CommentFields.complaintId],
+        compilationId: Get.arguments[Fields.complaintId],
         content: addCommentText.text,
       );
       response.fold((l) {
@@ -85,7 +86,7 @@ class CommentController extends GetxController {
       }, (r) {
         isLoading = false;
         addCommentText.clear();
-        getComments(compilationId: Get.arguments[CommentFields.complaintId]);
+        getComments(compilationId: Get.arguments[Fields.complaintId]);
         listScrollController.animateTo(0.0,
             duration: const Duration(microseconds: 300), curve: Curves.easeOut);
         update();
@@ -114,14 +115,14 @@ class CommentController extends GetxController {
 
   /// refresh indicator
   onRefresh() {
-    getComments(compilationId: Get.arguments[CommentFields.complaintId]);
+    getComments(compilationId: Get.arguments[Fields.complaintId]);
   }
 
   @override
   void onInit() {
     if (Get.arguments != null) {
-      compilation = Get.arguments[CommentFields.content];
-      getComments(compilationId: Get.arguments[CommentFields.complaintId]);
+      compilation = Get.arguments[Fields.compilations];
+      getComments(compilationId: Get.arguments[Fields.complaintId]);
     }
     userData();
     super.onInit();

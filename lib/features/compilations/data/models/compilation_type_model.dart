@@ -1,3 +1,4 @@
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation_type.dart';
 
 class CompilationTypeModel extends CompilationType {
@@ -9,17 +10,17 @@ class CompilationTypeModel extends CompilationType {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'status': status,
+      Fields.id: id,
+      Fields.name: name,
+      Fields.status: status,
     };
   }
 
   factory CompilationTypeModel.fromMap(Map<String, dynamic> map) {
     return CompilationTypeModel(
-      id: map['id'] != null ? map['id'] as int : null,
-      name: map['name'] != null ? map['name'] as String? : null,
-      status: map['status'] != null ? map['status'] as int : null,
+      id: map[Fields.id] != null ? map[Fields.id] as int : null,
+      name: map[Fields.name] != null ? map[Fields.name] as String? : null,
+      status: map[Fields.status] != null ? map[Fields.status] as int : null,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 
 class UserModel extends User {
@@ -8,31 +9,30 @@ class UserModel extends User {
     required super.name,
     required super.createdAt,
     required super.email,
-    required this.token,
+    this.token,
     required super.imageForWeb,
   });
 
-  final String token;
+  final String? token;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'image_for_web': imageForWeb,
-      'name': name,
-      'email': email,
-      'created_at': createdAt,
-      'token': ''
+      Fields.id: id,
+      Fields.imageForWeb: imageForWeb,
+      Fields.name: name,
+      Fields.email: email,
+      Fields.createdAt: createdAt,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      email: map['email'] as String,
-      imageForWeb: map['image_for_web'] as String,
-      token: map['token'] as String,
-      createdAt: map['created_at'] as String,
+      id: map[Fields.id] as int,
+      name: map[Fields.name] as String,
+      email: map[Fields.email] as String,
+      imageForWeb: map[Fields.imageForWeb] as String,
+      token: map[Fields.token] != null ? map[Fields.token] as String : null,
+      createdAt: map[Fields.createdAt] as String,
     );
   }
 

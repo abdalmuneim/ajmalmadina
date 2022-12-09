@@ -6,7 +6,9 @@ import 'package:butcity/features/compilations/domain/entities/compilation_type.d
 import 'package:dartz/dartz.dart';
 
 abstract class CompilationRepository {
-  Future<Either<Failure, List<Compilation>>> getCompilations();
+  Future<Either<Failure, List<Compilation>>> myCompilations();
+  Future<Either<Failure, List<Compilation>>> allCompilations();
+  Future<Either<Failure, List<CompilationType>>> getCompilationTypes();
   Future<Either<Failure, Compilation>> newCompilation({
     required String desc,
     required File image,
@@ -14,5 +16,4 @@ abstract class CompilationRepository {
     required String long,
     required String type,
   });
-  Future<Either<Failure, List<CompilationType>>> getCompilationTypes();
 }

@@ -1,4 +1,5 @@
 import 'package:butcity/core/const/api_urls.dart';
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/core/error/exceptions.dart';
 import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:get/get.dart';
@@ -59,8 +60,8 @@ class CommentDataSourceImpl extends GetConnect implements CommentsDataSource {
     Response response = await post(
       ApiUrls.addComments,
       {
-        CommentFields.complaintId: compilationId,
-        CommentFields.content: content,
+        Fields.complaintId: compilationId,
+        Fields.content: content,
       },
       headers: {
         'Accept': 'application/json',

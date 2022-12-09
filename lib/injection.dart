@@ -13,9 +13,10 @@ import 'package:butcity/features/compilations/data/repositories/comment_reposito
 import 'package:butcity/features/compilations/data/repositories/compilations_repository_impl.dart';
 import 'package:butcity/features/compilations/domain/repositories/compilation_repository.dart';
 import 'package:butcity/features/compilations/domain/usecases/add_comment_use_case.dart';
+import 'package:butcity/features/compilations/domain/usecases/all_compilations_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_comments_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_compilation_type_use_case.dart';
-import 'package:butcity/features/compilations/domain/usecases/get_compilations_use_case.dart';
+import 'package:butcity/features/compilations/domain/usecases/my_compilations_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/new_compilation_use_case.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -33,7 +34,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(baseAuthRepository: sl()));
   sl.registerLazySingleton(() => RegisterUseCase(baseAuthRepository: sl()));
   sl.registerLazySingleton(() => GetUserUseCase(baseAuthRepository: sl()));
-  sl.registerLazySingleton(() => GetCompilationsUseCase(sl()));
+  sl.registerLazySingleton(() => MyCompilationsUseCase(sl()));
+  sl.registerLazySingleton(() => AllCompilationsUseCase(sl()));
   sl.registerLazySingleton(() => NewCompilationsUseCase(sl()));
   sl.registerLazySingleton(() => GetCommentsUseCase(sl()));
   sl.registerLazySingleton(() => AddCommentsUseCase(sl()));

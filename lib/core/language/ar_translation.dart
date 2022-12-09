@@ -7,6 +7,8 @@ final Map<String, String> ar = {
   "camera": "الكاميرا",
   "gallery": "المعرض",
   "validateError": "مطلوب",
+  "update": "تعديل",
+  "myCompilations": "الشكاوي الخاصة بي",
   "successful": "نجح",
   "confirmPassValidate": "غير مطابق",
   "confirmPassword": "تأكيد كلمة المرور",

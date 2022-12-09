@@ -29,13 +29,13 @@ class UpdateUserDataView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     /// upload image
-                    /// take compilation photo
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
                           children: [
+                            /// button get image
                             ElevatedButton(
                               onPressed: () => controller.getImage(),
                               style: Theme.of(context)
@@ -62,12 +62,6 @@ class UpdateUserDataView extends StatelessWidget {
                                 text: LocaleKeys.tackPhoto.tr,
                               ),
                             ),
-                            if (controller.userImage == null) const SizedBox(),
-                            if (controller.userImage == null)
-                              CustomText(
-                                text: LocaleKeys.validateError.tr,
-                                color: Colors.red,
-                              ),
                           ],
                         ),
 

@@ -52,7 +52,7 @@ class RegisterController extends GetxController {
       update();
       ToastManager.showError(failure.message);
     }, (result) {
-      Get.offAllNamed(Routes.compilations, arguments: result);
+      Get.offAllNamed(Routes.allCompilations, arguments: result);
     });
   }
 }

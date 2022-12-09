@@ -6,7 +6,8 @@ abstract class Routes {
   static const splash = _Paths.splash;
   static const login = _Paths.login;
   static const register = _Paths.register;
-  static const compilations = _Paths.compilations;
+  static const myCompilations = _Paths.myCompilations;
+  static const allCompilations = _Paths.allCompilations;
   static const newCompilations = _Paths.newCompilations;
   static const aboutApp = _Paths.aboutApp;
   static const userUpdate = _Paths.userUpdate;
@@ -18,7 +19,8 @@ abstract class _Paths {
   static const splash = '/splash';
   static const login = '/login';
   static const register = '/register';
-  static const compilations = '/compilations';
+  static const myCompilations = '/compilations';
+  static const allCompilations = '/allCompilations';
   static const newCompilations = "/newCompilations";
   static const aboutApp = "/aboutApp";
   static const userUpdate = "/userUpdate";

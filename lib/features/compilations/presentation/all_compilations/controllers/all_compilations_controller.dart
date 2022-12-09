@@ -4,22 +4,23 @@ import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation.dart';
-import 'package:butcity/features/compilations/domain/usecases/get_compilations_use_case.dart';
+import 'package:butcity/features/compilations/domain/usecases/all_compilations_use_case.dart';
+import 'package:butcity/features/compilations/domain/usecases/my_compilations_use_case.dart';
 import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:get/get.dart';
 
-class CompilationsController extends GetxController {
-  final GetCompilationsUseCase _getCompilationsUseCase;
+class AllCompilationsController extends GetxController {
+  final AllCompilationsUseCase _allCompilationsUseCase;
+
   final GetUserUseCase _getUserUseCase;
 
-  CompilationsController(
-    this._getCompilationsUseCase,
+  AllCompilationsController(
+    this._allCompilationsUseCase,
     this._getUserUseCase,
   );
 
-  bool isLoading = false;
-
   User? user;
+  bool isLoading = false;
 
   List<Compilation> _compilations = [];
   List<Compilation> get compilations => _compilations;
@@ -28,7 +29,7 @@ class CompilationsController extends GetxController {
   Future getCompilations() async {
     isLoading = true;
     update();
-    final response = await _getCompilationsUseCase();
+    final response = await _allCompilationsUseCase();
 
     response.fold((l) {
       isLoading = false;
@@ -65,7 +66,7 @@ class CompilationsController extends GetxController {
   @override
   void onInit() async {
     await getCompilations();
-    await userData();
+    userData();
     super.onInit();
   }
 }

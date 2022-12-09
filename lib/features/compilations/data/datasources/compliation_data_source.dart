@@ -11,10 +11,16 @@ import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class CompilationDataSource {
-  /// get compilation
-  Future<List<CompilationModel>> getCompilations({required String token});
+  /// my compilation
+  Future<List<CompilationModel>> myCompilations({required String token});
 
-  /// get compilation
+  /// all compilation
+  Future<List<CompilationModel>> allCompilations({required String token});
+
+  /// get compilation type
+  Future<List<CompilationTypeModel>> getCompilationTypes({String? token});
+
+  /// new compilation
   Future<CompilationModel> newCompilation(
       {required String desc,
       required File image,
@@ -22,17 +28,45 @@ abstract class CompilationDataSource {
       required String long,
       required String type,
       required String? token});
-
-  /// get compilation type
-  Future<List<CompilationTypeModel>> getCompilationTypes({String? token});
 }
 
 class CompilationDataSourceImpl extends GetConnect
     implements CompilationDataSource {
   @override
-  Future<List<CompilationModel>> getCompilations(
+  Future<List<CompilationModel>> allCompilations(
       {required String token}) async {
-    final response = await get(ApiUrls.getCompilations, headers: {
+    final response = await get(ApiUrls.allCompilations, headers: {
+      'Authorization': 'Bearer $token',
+      'Accept': 'application/json',
+    });
+    final responseBody = response.body;
+    print('--------responseBody----------> $responseBody');
+
+    if (response.statusCode == 200) {
+      List<CompilationModel> compilationModels = [];
+      for (var element in responseBody['data']) {
+        CompilationModel compilationModel = CompilationModel.fromMap(element);
+        final location = await placemarkFromCoordinates(
+            double.tryParse(compilationModel.lat ?? '') ?? 0,
+            double.tryParse(compilationModel.long ?? '') ?? 0);
+        compilationModel =
+            compilationModel.copyWith(location: location[0].country);
+        compilationModels.add(compilationModel);
+      }
+      return compilationModels;
+    } else if (response.statusCode == 401) {
+      throw UnauthorizedException();
+    } else {
+      return await Future.delayed(
+        const Duration(seconds: 2),
+        () => allCompilations(token: token),
+      );
+    }
+  }
+
+  @override
+  Future<List<CompilationModel>> myCompilations({required String token}) async {
+    final response = await get(ApiUrls.myCompilations, headers: {
       'Authorization': 'Bearer $token',
       'Accept': 'application/json',
     });
@@ -55,7 +89,7 @@ class CompilationDataSourceImpl extends GetConnect
     } else {
       return await Future.delayed(
         const Duration(seconds: 2),
-        () => getCompilations(token: token),
+        () => myCompilations(token: token),
       );
     }
   }

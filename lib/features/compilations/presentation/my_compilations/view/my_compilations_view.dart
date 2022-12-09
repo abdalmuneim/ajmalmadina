@@ -1,3 +1,4 @@
+import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/font_manager.dart';
 import 'package:butcity/core/routes/app_pages.dart';
@@ -6,19 +7,19 @@ import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
 import 'package:butcity/features/compilations/data/models/comment_model.dart';
-import 'package:butcity/features/compilations/presentation/compilations/controllers/compilations_controller.dart';
+import 'package:butcity/features/compilations/presentation/my_compilations/controllers/my_compilations_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CompilationsView extends StatelessWidget {
-  const CompilationsView({Key? key}) : super(key: key);
+class MyCompilationsView extends StatelessWidget {
+  const MyCompilationsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<CompilationsController>(builder: (controller) {
+    return GetBuilder<MyCompilationsController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.compilations.tr),
+          title: Text(LocaleKeys.myCompilations.tr),
           centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton(
@@ -53,9 +54,8 @@ class CompilationsView extends StatelessWidget {
                             Get.toNamed(
                               Routes.comments,
                               arguments: {
-                                CommentFields.complaintId:
-                                    compilation.id.toString(),
-                                CommentFields.content: compilation,
+                                Fields.complaintId: compilation.id.toString(),
+                                Fields.compilations: compilation,
                               },
                             );
                           },

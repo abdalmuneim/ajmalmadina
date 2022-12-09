@@ -16,19 +16,14 @@ class UserUpdateController extends GetxController {
   final UserUpdateUseCase _userUpdateUseCase;
   final GetUserUseCase _userUseCase;
 
-  User? user;
   UserUpdateController(this._userUpdateUseCase, this._userUseCase);
 
-  TextEditingController nameCtrl = TextEditingController(text: '');
-  TextEditingController emailCtrl = TextEditingController(text: '');
-  TextEditingController passCtrl = TextEditingController(text: '');
-  TextEditingController confPassCtrl = TextEditingController(text: '');
+  User? user;
 
-  String nameError = '';
-  String emailError = '';
-  String passwordError = '';
-  String confirmPasswordError = '';
-  String nameOrEmailOrPassOrConfirmPasswordError = '';
+  TextEditingController nameCtrl = TextEditingController();
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passCtrl = TextEditingController();
+  TextEditingController confPassCtrl = TextEditingController();
 
   bool isLoading = false;
 
@@ -65,7 +60,7 @@ class UserUpdateController extends GetxController {
       isLoading = false;
       update();
       ToastManager.showSuccess(LocaleKeys.successful);
-      Get.offAllNamed(Routes.compilations);
+      Get.offAllNamed(Routes.myCompilations);
     });
 
     isLoading = false;

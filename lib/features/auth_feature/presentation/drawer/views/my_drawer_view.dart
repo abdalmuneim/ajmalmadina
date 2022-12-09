@@ -81,12 +81,21 @@ class MyDrawer extends StatelessWidget {
                       ),
                     ),
 
-                    /// compilation
+                    /// My compilation
                     DrawerItem(
-                      title: LocaleKeys.compilations.tr,
-                      icon: Icons.api,
+                      title: LocaleKeys.myCompilations.tr,
+                      icon: Icons.touch_app_outlined,
                       onTap: () {
-                        Get.offAllNamed(Routes.compilations);
+                        Get.offAllNamed(Routes.myCompilations);
+                      },
+                    ),
+
+                    /// all compilation
+                    DrawerItem(
+                      title: LocaleKeys.allCompilations.tr,
+                      icon: Icons.api_outlined,
+                      onTap: () {
+                        Get.offAllNamed(Routes.allCompilations);
                       },
                     ),
 
@@ -103,7 +112,7 @@ class MyDrawer extends StatelessWidget {
                     /// about app
                     DrawerItem(
                       title: LocaleKeys.aboutApp.tr,
-                      icon: Icons.info,
+                      icon: Icons.info_outline,
                       onTap: () {
                         Get.to(const AboutAppView());
                       },

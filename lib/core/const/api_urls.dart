@@ -9,7 +9,9 @@ class ApiUrls {
 
   static const String newCompilation = "$_baseUrl/complaints";
   static const String compilationType = "$_baseUrl/complaint_type";
-  static const String getCompilations = "$_baseUrl/complaints";
+  static const String myCompilations = "$_baseUrl/complaints";
+  static const String allCompilations =
+      "https://clean.codeella.com/api/allComplaint";
 
   static const String getComments = "$_baseUrl/comments/";
   static const String addComments = "$_baseUrl/comments";

@@ -19,7 +19,7 @@ class SplashController extends GetxController {
     getUserData.fold((failure) {
       Get.offAllNamed(Routes.login);
     }, (result) {
-      Get.offAllNamed(Routes.compilations, arguments: result);
+      Get.offAllNamed(Routes.allCompilations, arguments: result);
     });
 
     isLoading = false;

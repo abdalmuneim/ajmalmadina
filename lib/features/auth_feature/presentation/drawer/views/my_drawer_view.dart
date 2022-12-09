@@ -5,7 +5,6 @@ import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/aboutapp/view/about_app_view.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/drawer_item.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/view/compilations_view.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/controllers/my_drawer_controller.dart';
 import 'package:butcity/injection.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +45,7 @@ class MyDrawer extends StatelessWidget {
                             /// edit button
                             IconButton(
                               onPressed: () {
-                                Get.toNamed(Routes.userUpdate);
+                                Get.offAllNamed(Routes.userUpdate);
                               },
                               icon: const Icon(
                                 Icons.edit,
@@ -81,21 +80,27 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    /// compilation
                     DrawerItem(
                       title: LocaleKeys.compilations.tr,
                       icon: Icons.api,
                       onTap: () {
-                        Get.to(const CompilationsView());
+                        Get.offAllNamed(Routes.compilations);
                       },
                     ),
+
+                    /// add compilation
                     DrawerItem(
                       title: LocaleKeys.addCompilations.tr,
                       icon: Icons.add_moderator_outlined,
                       onTap: () {
-                        Get.to(Routes.newCompilations);
+                        Get.offAllNamed(Routes.newCompilations);
                       },
                     ),
                     const Divider(),
+
+                    /// about app
                     DrawerItem(
                       title: LocaleKeys.aboutApp.tr,
                       icon: Icons.info,
@@ -103,6 +108,8 @@ class MyDrawer extends StatelessWidget {
                         Get.to(const AboutAppView());
                       },
                     ),
+
+                    /// logout
                     DrawerItem(
                       title: LocaleKeys.logout.tr,
                       icon: Icons.logout,

@@ -8,6 +8,7 @@ import 'package:butcity/features/auth_feature/domain/use_cases/register_use_case
 import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RegisterController extends GetxController {
   final RegisterUseCase _registerUseCase;
@@ -30,7 +31,7 @@ class RegisterController extends GetxController {
 
   File? userImage;
   getImage() async {
-    userImage = await ImagePic.getImage();
+    userImage = await ImagePic.getImage(ImageSource.gallery);
     update();
   }
 

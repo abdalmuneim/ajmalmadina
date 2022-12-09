@@ -9,7 +9,7 @@ class MyLocation extends StatelessWidget {
   Widget build(BuildContext context) {
     return GoogleMap(
       initialCameraPosition:
-          CameraPosition(target: LatLng(lat, long), zoom: 15),
+          CameraPosition(target: LatLng(lat, long), zoom: 18),
       mapType: MapType.normal,
       myLocationEnabled: true,
       myLocationButtonEnabled: false,

@@ -4,9 +4,9 @@ import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 
 class UserModel extends User {
   const UserModel({
-    required super.id,  
+    required super.id,
     required super.name,
-    required super.createdAt, 
+    required super.createdAt,
     required super.email,
     required this.token,
     required super.imageForWeb,
@@ -16,23 +16,23 @@ class UserModel extends User {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id, 
-      'image_for_web': imageForWeb, 
+      'id': id,
+      'image_for_web': imageForWeb,
       'name': name,
       'email': email,
-      'created_at': createdAt, 
+      'created_at': createdAt,
       'token': ''
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      id: map['id'] as int , 
+      id: map['id'] as int,
       name: map['name'] as String,
       email: map['email'] as String,
       imageForWeb: map['image_for_web'] as String,
       token: map['token'] as String,
-      createdAt: map['created_at'] as String,   
+      createdAt: map['created_at'] as String,
     );
   }
 

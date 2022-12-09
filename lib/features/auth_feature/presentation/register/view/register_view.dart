@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/assets_manager.dart';
 import 'package:butcity/core/resources/values_manager.dart';
@@ -12,7 +10,6 @@ import 'package:get/get.dart';
 class RegisterView extends StatelessWidget {
   RegisterView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  File? _file;
 
   @override
   Widget build(BuildContext context) {

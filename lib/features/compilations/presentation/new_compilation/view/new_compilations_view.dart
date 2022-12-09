@@ -2,8 +2,8 @@ import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/core/widgets/custom_text_form_field.dart';
-import 'package:butcity/core/widgets/location.dart';
-import 'package:butcity/features/compilations/presentaion/new_compilation/controller/new_compilation_controller.dart';
+import 'package:butcity/core/widgets/my_location.dart';
+import 'package:butcity/features/compilations/presentation/new_compilation/controller/new_compilation_controller.dart';
 import 'package:butcity/core/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -182,6 +182,7 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
                         fixedSize: MaterialStatePropertyAll(Size(170, 50))),
                     onPressed: !controller.isLoading
                         ? () {
+                            FocusManager.instance.primaryFocus?.unfocus();
                             if (_formKey.currentState!.validate()) {
                               controller.addCompilation();
                             }

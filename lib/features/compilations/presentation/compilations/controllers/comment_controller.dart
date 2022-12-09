@@ -45,12 +45,8 @@ class CommentController extends GetxController {
 
   /// get comments
   Future<void> getComments({required String compilationId}) async {
-    if (comments.isNotEmpty &&
-        compilationId == comments.first.complaintId.toString()) {
-    } else {
-      isLoading = true;
-      update();
-    }
+    isLoading = true;
+    update();
 
     final response = await _getCommentUseCase(compilationId: compilationId);
 
@@ -64,8 +60,8 @@ class CommentController extends GetxController {
       ToastManager.showError(l.message);
     }, (r) {
       _comment = r;
-
       isLoading = false;
+      update();
     });
   }
 

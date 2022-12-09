@@ -2,7 +2,7 @@ import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/values_manager.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/core/widgets/custom_text_form_field.dart';
-import 'package:butcity/features/auth_feature/presentation/drawer/controllers/update_user_data_controller.dart';
+import 'package:butcity/features/auth_feature/presentation/drawer/controllers/user_update_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +12,7 @@ class UpdateUserDataView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<UpdateUserController>(builder: (controller) {
+    return GetBuilder<UserUpdateController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
           title: Text(LocaleKeys.editAccount.tr),

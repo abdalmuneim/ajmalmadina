@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:butcity/core/const/api_urls.dart';
 import 'package:butcity/core/error/exceptions.dart';
-import 'package:butcity/core/error/failures.dart';
 import 'package:butcity/features/auth_feature/data/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:get/get.dart';
@@ -18,10 +17,10 @@ abstract class BaseAuthRemoteDataSource {
     required File imageForWeb,
     required String confirmPassword,
   });
-  Future<UserModel> updateUser({
+  Future<UserModel> userUpdate({
     required String name,
     required String token,
-    required File imageForWeb,
+    File? imageForWeb,
     required String password,
     required String confirmPassword,
   });
@@ -44,7 +43,7 @@ class AuthRemoteDataSource extends GetConnect
     required String confirmPassword,
     required File imageForWeb,
   }) async {
-    var request = http.MultipartRequest('POST', Uri.parse(ApiUrls.urlRegister));
+    var request = http.MultipartRequest('POST', Uri.parse(ApiUrls.register));
 
     request.fields['name'] = name;
     request.fields['email'] = email;
@@ -60,7 +59,6 @@ class AuthRemoteDataSource extends GetConnect
     final http.StreamedResponse response = await request.send();
     final responseBody = jsonDecode(await response.stream.bytesToString());
 
-    print('----------> $responseBody');
     if (response.statusCode == 200) {
       return UserModel.fromMap(responseBody['data']);
     } else if (response.statusCode == 401) {
@@ -74,7 +72,7 @@ class AuthRemoteDataSource extends GetConnect
   Future<UserModel> login(
       {required String email, required String password}) async {
     Response response = await post(
-      ApiUrls.urlLogin,
+      ApiUrls.login,
       {
         'email': email,
         'password': password,
@@ -83,7 +81,6 @@ class AuthRemoteDataSource extends GetConnect
         'Accept': 'application/json',
       },
     );
-    print('----------> ${response.body}');
     if (response.statusCode == 200) {
       return UserModel.fromMap(response.body['data']);
     } else {
@@ -94,7 +91,7 @@ class AuthRemoteDataSource extends GetConnect
   @override
   Future<Unit> logOut({required String token}) async {
     Response response = await post(
-      ApiUrls.urlSignOut,
+      ApiUrls.signOut,
       {},
       headers: {
         'Accept': 'application/json',
@@ -110,21 +107,22 @@ class AuthRemoteDataSource extends GetConnect
   }
 
   @override
-  Future<UserModel> updateUser({
+  Future<UserModel> userUpdate({
     required String token,
     required String name,
-    required File imageForWeb,
+    File? imageForWeb,
     required String password,
     required String confirmPassword,
   }) async {
-    var request =
-        http.MultipartRequest('POST', Uri.parse(ApiUrls.urlUpdateUser));
+    var request = http.MultipartRequest('POST', Uri.parse(ApiUrls.updateUser));
 
     request.fields['name'] = name;
     request.fields['password'] = password;
     request.fields['password_confirmation'] = confirmPassword;
-    request.files
-        .add(await http.MultipartFile.fromPath('image', imageForWeb.path));
+    if (imageForWeb != null) {
+      request.files
+          .add(await http.MultipartFile.fromPath('image', imageForWeb.path));
+    }
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'
@@ -133,7 +131,8 @@ class AuthRemoteDataSource extends GetConnect
 
     final http.StreamedResponse response = await request.send();
     final responseBody = jsonDecode(await response.stream.bytesToString());
-    
+
+    print('------------> ${responseBody['data']}');
     if (response.statusCode == 200) {
       return UserModel.fromMap(responseBody['data']);
     } else if (response.statusCode == 401) {

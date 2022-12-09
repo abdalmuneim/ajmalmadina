@@ -5,18 +5,18 @@ import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/repositories/base_auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class UpdateUserUseCase {
+class UserUpdateUseCase {
   final BaseAuthRepository baseAuthRepository;
 
-  UpdateUserUseCase({required this.baseAuthRepository});
+  UserUpdateUseCase({required this.baseAuthRepository});
 
   Future<Either<Failure, User>> call({
     required String name,
-    required File imageForWeb,
+    File? imageForWeb,
     required String password,
     required String confirmPassword,
   }) async {
-    return await baseAuthRepository.updateUser(
+    return await baseAuthRepository.userUpdate(
       name: name,
       imageForWeb: imageForWeb,
       password: password,

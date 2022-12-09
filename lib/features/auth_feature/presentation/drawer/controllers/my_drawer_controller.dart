@@ -1,26 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'dart:io';
-
 import 'package:butcity/core/error/failures.dart';
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/routes/app_pages.dart';
-import 'package:butcity/core/widgets/image_pic.dart';
 import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/logout_use_case.dart';
 import 'package:butcity/core/resources/toast_manager.dart';
-import 'package:butcity/features/auth_feature/domain/use_cases/update_user_use_case.dart';
 import 'package:get/get.dart';
 
 class MyDrawerController extends GetxController {
   LogOutUseCase logOutUseCase;
-  GetUserUseCase getUserUseCase; 
+  GetUserUseCase getUserUseCase;
 
   MyDrawerController({
     required this.logOutUseCase,
     required this.getUserUseCase,
-    
   });
 
   bool isLoading = false;
@@ -62,10 +57,9 @@ class MyDrawerController extends GetxController {
     });
   }
 
-  
   @override
-  void onInit() {
-    userData();
+  Future<void> onInit() async {
+    await userData();
     super.onInit();
   }
 }

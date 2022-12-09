@@ -72,7 +72,7 @@ class CompilationDataSourceImpl extends GetConnect
       throw EmptyCacheException();
     }
     var request =
-        http.MultipartRequest('POST', Uri.parse(ApiUrls.urlNewCompilation));
+        http.MultipartRequest('POST', Uri.parse(ApiUrls.newCompilation));
 
     request.fields['description'] = desc;
     request.fields['lat'] = lat;
@@ -105,7 +105,7 @@ class CompilationDataSourceImpl extends GetConnect
     }
 
     final response = await get(
-      ApiUrls.urlCompilationType,
+      ApiUrls.compilationType,
       headers: {
         'Authorization': 'Bearer $token',
         'Accept': 'application/json',

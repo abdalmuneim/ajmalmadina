@@ -20,9 +20,9 @@ abstract class BaseAuthRepository {
     required String password,
   });
 
-  Future<Either<Failure, User>> updateUser({
-    required String name, 
-    required File imageForWeb,
+  Future<Either<Failure, User>> userUpdate({
+    required String name,
+    File? imageForWeb,
     required String password,
     required String confirmPassword,
   });

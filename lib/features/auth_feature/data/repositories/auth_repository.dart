@@ -5,7 +5,6 @@ import 'package:butcity/core/error/failures.dart';
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/network/network_info.dart';
 import 'package:butcity/features/auth_feature/data/models/user_model.dart';
-import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/repositories/base_auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -104,22 +103,21 @@ class AuthRespoitory implements BaseAuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel>> updateUser({
+  Future<Either<Failure, UserModel>> userUpdate({
     required String name,
-    required File imageForWeb,
+    File? imageForWeb,
     required String password,
     required String confirmPassword,
   }) async {
     if (await networkInfo.isConnected) {
       try {
-        final user = await baseAuthRemoteDataSource.updateUser(
+        final user = await baseAuthRemoteDataSource.userUpdate(
           name: name,
           imageForWeb: imageForWeb,
           token: await baseAuthLocalDataSource.readToken(),
           password: password,
           confirmPassword: confirmPassword,
         );
-
         await baseAuthLocalDataSource.writeUser(user: user);
         await baseAuthLocalDataSource.writeToken(token: user.token);
         return Right(user);

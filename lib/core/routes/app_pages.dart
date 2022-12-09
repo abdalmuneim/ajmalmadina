@@ -1,18 +1,17 @@
-import 'package:butcity/features/aboutapp/view/about_app_view.dart';
-import 'package:butcity/features/auth_feature/presentation/bindings/update_user_data_binding.dart';
-import 'package:butcity/features/auth_feature/presentation/drawer/views/update_user_data_view.dart';
+import 'package:butcity/features/auth_feature/presentation/bindings/user_update_binding.dart';
+import 'package:butcity/features/auth_feature/presentation/drawer/views/user_update_view.dart';
 import 'package:butcity/features/auth_feature/presentation/login/bindings/login_bindings.dart';
 import 'package:butcity/features/auth_feature/presentation/login/view/login_view.dart';
 import 'package:butcity/features/auth_feature/presentation/register/bindings/register_binding.dart';
 import 'package:butcity/features/auth_feature/presentation/register/view/register_view.dart';
 import 'package:butcity/features/auth_feature/presentation/splash/bindings/splash_binding.dart';
 import 'package:butcity/features/auth_feature/presentation/splash/views/splash_view.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/bindings/comment_binding.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/bindings/compilations_bindings.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/view/comment_view.dart';
-import 'package:butcity/features/compilations/presentaion/new_compilation/bindings/new_compilations_bindings.dart';
-import 'package:butcity/features/compilations/presentaion/new_compilation/view/new_compilations_view.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/view/compilations_view.dart';
+import 'package:butcity/features/compilations/presentation/compilations/bindings/comment_binding.dart';
+import 'package:butcity/features/compilations/presentation/compilations/bindings/compilations_bindings.dart';
+import 'package:butcity/features/compilations/presentation/compilations/view/comment_view.dart';
+import 'package:butcity/features/compilations/presentation/new_compilation/bindings/new_compilations_bindings.dart';
+import 'package:butcity/features/compilations/presentation/new_compilation/view/new_compilations_view.dart';
+import 'package:butcity/features/compilations/presentation/compilations/view/compilations_view.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -56,7 +55,7 @@ class AppPages {
 
     GetPage(
       name: _Paths.userUpdate,
-      page: () =>   UpdateUserDataView(),
+      page: () => UpdateUserDataView(),
       binding: UpdateUserBinding(),
     ),
     GetPage(

@@ -6,7 +6,7 @@ import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
 import 'package:butcity/features/compilations/data/models/comment_model.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/controllers/compilations_controller.dart';
+import 'package:butcity/features/compilations/presentation/compilations/controllers/compilations_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

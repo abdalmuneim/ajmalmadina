@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:butcity/core/error/print_in_debuge.dart';
 import 'package:butcity/core/routes/app_pages.dart';
+import 'package:butcity/core/widgets/image_pic.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation_type.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_compilation_type_use_case.dart';
 import 'package:butcity/features/compilations/domain/usecases/new_compilation_use_case.dart';
@@ -88,29 +88,13 @@ class NewCompilationController extends GetxController {
 
   File? get image => _image;
 
-  Future getImage() async {
-    _image = await ImagePicker()
-        .pickImage(
-      source: ImageSource.camera,
-      imageQuality: 20,
-    )
-        .then((value) {
-      if (value != null) {
-        printInDebug(ms: 'value: ${value.name}');
-        _image = File(value.path);
-        printInDebug(ms: '$image');
-        return _image;
-      } else {
-        printInDebug(ms: 'not selected');
-        return null;
-      }
-    });
-    imageError = '';
+  getImage() async {
+    _image = await ImagePic.getImage(ImageSource.camera);
+    if (_image != null) {
+      imageError = '';
+      update();
+    }
     update();
-  }
-
-  void deletedImage() {
-    _image = null;
   }
 
   List<CompilationType> compilationTypes = [];
@@ -127,8 +111,8 @@ class NewCompilationController extends GetxController {
     );
   }
 
-  bool servicestatus = false;
-  bool haspermission = false;
+  bool serviceStatus = false;
+  bool hasPermission = false;
   late LocationPermission permission;
   Position? position;
   String long = "", lat = "";
@@ -191,15 +175,10 @@ class NewCompilationController extends GetxController {
       //device must move horizontally before an update event is generated;
     );
     update();
-    StreamSubscription<Position> positionStream =
-        Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+    Geolocator.getPositionStream(locationSettings: locationSettings).listen(
       (Position position) {
-        printInDebug(ms: '${position.longitude}'); //Output: 80.24599079
-        printInDebug(ms: '${position.latitude}'); //Output: 29.6593457
-
         long = position.longitude.toString();
         lat = position.latitude.toString();
-
         update();
       },
     );

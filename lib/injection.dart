@@ -6,7 +6,7 @@ import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case
 import 'package:butcity/features/auth_feature/domain/use_cases/login_use_case.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/logout_use_case.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/register_use_case.dart';
-import 'package:butcity/features/auth_feature/domain/use_cases/update_user_use_case.dart';
+import 'package:butcity/features/auth_feature/domain/use_cases/user_update_use_case.dart';
 import 'package:butcity/features/compilations/data/datasources/comment__data_source.dart';
 import 'package:butcity/features/compilations/data/datasources/compliation_data_source.dart';
 import 'package:butcity/features/compilations/data/repositories/comment_repository_impl.dart';
@@ -39,7 +39,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AddCommentsUseCase(sl()));
   sl.registerLazySingleton(() => GetCompilationTypeUseCase(sl()));
   sl.registerLazySingleton(() => LogOutUseCase(baseAuthRepository: sl()));
-  sl.registerLazySingleton(() => UpdateUserUseCase(baseAuthRepository: sl()));
+  sl.registerLazySingleton(() => UserUpdateUseCase(baseAuthRepository: sl()));
 
   // Repository
   sl.registerLazySingleton<BaseAuthRepository>(

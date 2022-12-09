@@ -3,7 +3,7 @@ import 'package:butcity/core/widgets/user_data_view_with_compilation.dart';
 import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/compilations/domain/entities/comment.dart';
-import 'package:butcity/features/compilations/presentaion/compilations/controllers/comment_controller.dart';
+import 'package:butcity/features/compilations/presentation/compilations/controllers/comment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,7 +61,7 @@ class CommentView extends StatelessWidget {
                         )
                       : controller.comments.isNotEmpty
                           ? ListView.builder(
-                              reverse: true,
+                              reverse: false,
                               itemCount: controller.comments.length,
                               itemBuilder: (context, index) {
                                 Comment comment = controller.comments[index];
@@ -112,7 +112,10 @@ class CommentView extends StatelessWidget {
                               controller: controller.listScrollController,
                             )
                           : Center(
-                              child: Text(LocaleKeys.noComments.tr),
+                              child: CustomText(
+                                text: LocaleKeys.noComments.tr,
+                                fontSize: 30,
+                              ),
                             ),
                 ),
               ),

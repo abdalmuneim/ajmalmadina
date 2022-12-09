@@ -10,6 +10,9 @@ abstract class AppTranslation {
 
 abstract class LocaleKeys {
   static const networkFailure = 'networkFailure';
+  static const successful = 'successful';
+  static const camera = 'camera';
+  static const gallery = 'gallery';
   static const edit = 'edit';
   static const incorrectEmailAddress = 'incorrectEmailAddress';
   static const incorrectNameAddress = 'incorrectNameAddress';

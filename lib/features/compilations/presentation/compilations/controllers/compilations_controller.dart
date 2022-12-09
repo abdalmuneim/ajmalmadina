@@ -58,7 +58,6 @@ class CompilationsController extends GetxController {
       ToastManager.showError(mapFailureToMessage(failure));
     }, (right) {
       user = right;
-      print(user!.imageForWeb);
       update();
     });
   }

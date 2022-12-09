@@ -10,7 +10,7 @@ abstract class BaseAuthLocalDataSource {
   Future<UserModel> readUser();
   Future<Unit> writeUser({required UserModel user});
   Future<Unit> removeUser();
-  Future<String> readToken(); 
+  Future<String> readToken();
 
   Future<Unit> writeToken({required String token});
   Future<Unit> removeToken();
@@ -51,9 +51,6 @@ class AuthLocalDataSource implements BaseAuthLocalDataSource {
       throw EmptyCacheException();
     }
   }
-
- 
- 
 
   @override
   Future<Unit> removeToken() async {

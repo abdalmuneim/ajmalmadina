@@ -7,6 +7,7 @@ import 'package:butcity/features/aboutapp/view/about_app_view.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/drawer_item.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/controllers/my_drawer_controller.dart';
 import 'package:butcity/injection.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,13 +67,28 @@ class MyDrawer extends StatelessWidget {
                       ),
 
                       /// user image
-                      currentAccountPicture: controller.user?.imageForWeb !=
-                              null
-                          ? CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(controller.user!.imageForWeb),
-                            )
-                          : const CircleAvatar(),
+                      currentAccountPicture:
+                          controller.user?.imageForWeb != null
+                              ? CachedNetworkImage(
+                                  imageUrl: controller.user!.imageForWeb,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                )
+                              : const CircleAvatar(
+                                  child: Icon(Icons.person),
+                                ),
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(AssetsManager.backPerson),
@@ -86,7 +102,13 @@ class MyDrawer extends StatelessWidget {
                       title: LocaleKeys.myCompilations.tr,
                       icon: Icons.touch_app_outlined,
                       onTap: () {
-                        Get.offAllNamed(Routes.myCompilations);
+                        if (Get.currentRoute != Routes.myCompilations) {
+                          Get.back();
+
+                          Get.toNamed(Routes.myCompilations);
+                        } else {
+                          Get.back();
+                        }
                       },
                     ),
 
@@ -95,7 +117,12 @@ class MyDrawer extends StatelessWidget {
                       title: LocaleKeys.allCompilations.tr,
                       icon: Icons.api_outlined,
                       onTap: () {
-                        Get.offAllNamed(Routes.allCompilations);
+                        if (Get.currentRoute != Routes.allCompilations) {
+                          Get.back();
+                          Get.offAllNamed(Routes.allCompilations);
+                        } else {
+                          Get.back();
+                        }
                       },
                     ),
 
@@ -104,6 +131,7 @@ class MyDrawer extends StatelessWidget {
                       title: LocaleKeys.addCompilations.tr,
                       icon: Icons.add_moderator_outlined,
                       onTap: () {
+                        Get.back();
                         Get.toNamed(Routes.newCompilations);
                       },
                     ),
@@ -114,6 +142,8 @@ class MyDrawer extends StatelessWidget {
                       title: LocaleKeys.aboutApp.tr,
                       icon: Icons.info_outline,
                       onTap: () {
+                        Get.back();
+
                         Get.to(const AboutAppView());
                       },
                     ),

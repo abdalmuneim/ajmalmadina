@@ -115,7 +115,11 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
                                 size: 45,
                               ),
                             ),
-                            Text(LocaleKeys.getLocation.tr),
+                            const SizedBox(height: 20.0),
+                            CustomText(
+                              text: LocaleKeys.getLocation.tr,
+                              color: Colors.green,
+                            ),
                           ],
                         ),
                   if (controller.locationError.isNotEmpty)

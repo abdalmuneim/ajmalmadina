@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:butcity/core/language/app_translations.dart';
-import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/core/widgets/image_pic.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation_type.dart';
 import 'package:butcity/features/compilations/domain/usecases/get_compilation_type_use_case.dart';
@@ -69,14 +68,14 @@ class NewCompilationController extends GetxController {
         long: long,
         type: selectedCompilationType!.id.toString(),
       );
-      response.fold((l) {
+      response.fold((failure) {
         isLoading = false;
         update();
-        return ToastManager.showError(l.message);
-      }, (r) {
+        return ToastManager.showError(failure.message);
+      }, (right) {
         isLoading = false;
         update();
-        Get.offAllNamed(Routes.myCompilations);
+        Get.back();
         ToastManager.showSuccess('لقد تم اضافة شكوي بنجاح!');
       });
     }
@@ -102,10 +101,12 @@ class NewCompilationController extends GetxController {
     final response = await getCompilationTypeUseCase();
 
     response.fold(
-      (l) => ToastManager.showError(l.message),
-      (r) => {
-        compilationTypes = r,
-        update(),
+      (failure) {
+        ToastManager.showError(failure.message);
+      },
+      (right) {
+        compilationTypes = right;
+        update();
       },
     );
   }
@@ -121,21 +122,15 @@ class NewCompilationController extends GetxController {
     try {
       bool serviceEnabled;
       LocationPermission permission;
-      //
-      // showLocationError() => this.showLocationError(context);
-
-      // Test if location services are enabled.
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         if (await Permission.location.isPermanentlyDenied) {
-          // showLocationError();
         } else {
           final result = await Permission.location.request();
 
           serviceEnabled = result == PermissionStatus.granted;
         }
       }
-      //
       permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         await Geolocator.requestPermission();
@@ -147,9 +142,6 @@ class NewCompilationController extends GetxController {
       if (permission == LocationPermission.deniedForever) {
         ToastManager.showError('يجب تفعيل الموقع');
 
-        return null;
-      }
-      if (!serviceEnabled) {
         return null;
       }
 
@@ -185,7 +177,6 @@ class NewCompilationController extends GetxController {
 
   @override
   void onInit() async {
-    await getLocation();
     await getCompilationsType();
     super.onInit();
   }

@@ -47,7 +47,8 @@ dependencies:
   geocoding: ^2.0.4
   google_maps_flutter: ^2.2.1
   permission_handler:
-
+  cached_network_image: ^3.2.3
+  
   http: ^0.13.5
   shared_preferences: ^2.0.15
 

@@ -5,7 +5,6 @@ import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/features/auth_feature/domain/entities/user.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case.dart';
-import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:butcity/features/compilations/domain/entities/comment.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation.dart';
 import 'package:butcity/features/compilations/domain/usecases/add_comment_use_case.dart';
@@ -51,16 +50,15 @@ class CommentController extends GetxController {
 
     final response = await _getCommentUseCase(compilationId: compilationId);
 
-    response.fold((l) {
+    response.fold((Failure failure) {
       isLoading = false;
-      update();
-      if (l.runtimeType == UnAuthenticatedFailure) {
+      if (failure.runtimeType == UnAuthenticatedFailure) {
         Get.offAllNamed(Routes.login);
       }
-
-      ToastManager.showError(l.message);
-    }, (r) {
-      _comment = r;
+      update();
+      ToastManager.showError(failure.message);
+    }, (right) {
+      _comment = right;
       isLoading = false;
       update();
     });
@@ -80,15 +78,20 @@ class CommentController extends GetxController {
         compilationId: Get.arguments[Fields.complaintId],
         content: addCommentText.text,
       );
-      response.fold((l) {
+      response.fold((failure) {
         isLoading = false;
         update();
-      }, (r) {
+        ToastManager.showError(failure.message);
+      }, (right) {
         isLoading = false;
         addCommentText.clear();
         getComments(compilationId: Get.arguments[Fields.complaintId]);
-        listScrollController.animateTo(0.0,
-            duration: const Duration(microseconds: 300), curve: Curves.easeOut);
+        if (listScrollController.hasClients) {
+          listScrollController.animateTo(0.0,
+              duration: const Duration(microseconds: 500),
+              curve: Curves.easeOut);
+        }
+
         update();
       });
     }

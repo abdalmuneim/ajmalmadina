@@ -40,8 +40,6 @@ class CompilationDataSourceImpl extends GetConnect
       'Accept': 'application/json',
     });
     final responseBody = response.body;
-    print('--------responseBody----------> $responseBody');
-
     if (response.statusCode == 200) {
       List<CompilationModel> compilationModels = [];
       for (var element in responseBody['data']) {

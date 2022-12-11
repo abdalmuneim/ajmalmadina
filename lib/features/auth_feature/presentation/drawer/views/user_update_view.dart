@@ -166,7 +166,7 @@ class UpdateUserDataView extends StatelessWidget {
                               },
                               color: Colors.blueAccent,
                               child: CustomText(
-                                text: LocaleKeys.create.tr,
+                                text: LocaleKeys.edit.tr,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900,
                                 fontSize: 18,

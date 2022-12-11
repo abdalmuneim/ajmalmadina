@@ -20,6 +20,14 @@ class MyCompilationsView extends StatelessWidget {
         appBar: AppBar(
           title: Text(LocaleKeys.myCompilations.tr),
           centerTitle: true,
+          actions: [
+            RotatedBox(
+              quarterTurns: 2,
+              child: IconButton(
+                  onPressed: () => Get.back(),
+                  icon: const Icon(Icons.arrow_back)),
+            )
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,

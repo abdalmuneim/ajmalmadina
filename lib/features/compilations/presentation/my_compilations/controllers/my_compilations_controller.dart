@@ -30,16 +30,16 @@ class MyCompilationsController extends GetxController {
     update();
     final response = await _myCompilationsUseCase();
 
-    response.fold((l) {
+    response.fold((failure) {
       isLoading = false;
       update();
-      if (l.runtimeType == UnAuthenticatedFailure) {
+      if (failure.runtimeType == UnAuthenticatedFailure) {
         Get.offAllNamed(Routes.login);
       }
 
-      ToastManager.showError(l.message);
-    }, (r) {
-      _compilations = r;
+      ToastManager.showError(failure.message);
+    }, (right) {
+      _compilations = right;
       isLoading = false;
       update();
     });

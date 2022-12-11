@@ -48,12 +48,12 @@ class UserUpdateController extends GetxController {
     );
 
     result.fold((failure) {
-      if (failure.runtimeType == UnAuthenticatedFailure) {
-        Get.offAllNamed(Routes.login);
-      }
       isLoading = false;
       update();
       ToastManager.showError(mapFailureToMessage(failure));
+      if (failure.runtimeType == UnAuthenticatedFailure) {
+        Get.offAllNamed(Routes.login);
+      }
     }, (right) {
       user = right;
       isLoading = false;

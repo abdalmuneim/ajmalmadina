@@ -69,9 +69,9 @@ class CommentDataSourceImpl extends GetConnect implements CommentsDataSource {
       },
     );
     if (response.statusCode == 200) {
-      return CommentModel.fromMap(response.body['data']);
+      return CommentModel.fromMap(response.body[Fields.data]);
     } else {
-      throw ServerException(message: response.body['error']);
+      throw ServerException(message: response.body[Fields.message]);
     }
   }
 }

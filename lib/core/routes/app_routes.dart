@@ -19,7 +19,7 @@ abstract class _Paths {
   static const splash = '/splash';
   static const login = '/login';
   static const register = '/register';
-  static const myCompilations = '/compilations';
+  static const myCompilations = '/myCompilations';
   static const allCompilations = '/allCompilations';
   static const newCompilations = "/newCompilations";
   static const aboutApp = "/aboutApp";

@@ -30,17 +30,15 @@ class AllCompilationsController extends GetxController {
     update();
     final response = await _allCompilationsUseCase();
 
-    response.fold((l) {
+    response.fold((failure) {
       isLoading = false;
+      ToastManager.showError(failure.message);
       update();
-      if (l.runtimeType == UnAuthenticatedFailure) {
+      if (failure.runtimeType == UnAuthenticatedFailure) {
         Get.offAllNamed(Routes.login);
       }
-
-      ToastManager.showError(l.message);
-    }, (r) {
-      _compilations = r;
-      print('---------r-------------> ${r.map((e) => e.imageForWeb)}');
+    }, (right) {
+      _compilations = right;
       isLoading = false;
       update();
     });

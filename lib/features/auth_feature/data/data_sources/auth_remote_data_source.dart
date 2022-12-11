@@ -133,11 +133,11 @@ class AuthRemoteDataSource extends GetConnect
     final http.StreamedResponse response = await request.send();
     final responseBody = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
-      return UserModel.fromMap(responseBody['data']);
+      return UserModel.fromMap(responseBody[Fields.data]);
     } else if (response.statusCode == 401) {
       throw UnauthorizedException();
     } else {
-      throw ServerException(message: responseBody['message']);
+      throw ServerException(message: responseBody[Fields.message]);
     }
   }
 }

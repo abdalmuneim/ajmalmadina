@@ -12,13 +12,13 @@ class UserUpdateUseCase {
 
   Future<Either<Failure, User>> call({
     required String name,
-    File? imageForWeb,
+    File? image,
     required String password,
     required String confirmPassword,
   }) async {
     return await baseAuthRepository.userUpdate(
       name: name,
-      imageForWeb: imageForWeb,
+      image: image,
       password: password,
       confirmPassword: confirmPassword,
     );

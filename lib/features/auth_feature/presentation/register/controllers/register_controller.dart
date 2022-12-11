@@ -40,7 +40,7 @@ class RegisterController extends GetxController {
     final response = await _registerUseCase(
         confirmPassword: confPassCtrl.text,
         email: emailCtrl.text,
-        imageForWeb: userImage,
+        image: userImage,
         name: nameCtrl.text,
         password: passCtrl.text);
     isLoading = false;

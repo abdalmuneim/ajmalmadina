@@ -29,7 +29,7 @@ class NewCompilationController extends GetxController {
   String locationError = '';
   bool isLoading = false;
 
-  /// on change descrptions
+  /// on change descriptions
   onChangePhoto(File img) {
     if (imageError.isNotEmpty) {
       imageError = '';
@@ -62,14 +62,14 @@ class NewCompilationController extends GetxController {
         long.isNotEmpty &&
         lat.isNotEmpty) {
       locationError = '';
-      final respone = await newCompilationsUseCase(
+      final response = await newCompilationsUseCase(
         desc: descriptionCtr.text,
-        image: image!,
+        image: image,
         lat: lat,
         long: long,
         type: selectedCompilationType!.id.toString(),
       );
-      respone.fold((l) {
+      response.fold((l) {
         isLoading = false;
         update();
         return ToastManager.showError(l.message);

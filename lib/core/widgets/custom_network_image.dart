@@ -6,16 +6,17 @@ import 'package:get/get.dart';
 class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage(
       {super.key, required this.url, this.borderRadius = 10});
-  final String url;
+  final String? url;
   final double borderRadius;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MyCompilationsController>(builder: (context) {
+      print('--------------> $url');
       return ClipRRect(
         borderRadius: BorderRadius.circular(borderRadius),
         child: Image.network(
+          url ?? "",
           fit: BoxFit.cover,
-          url,
           errorBuilder: (BuildContext context, _, stackTrace) {
             return Center(
                 child: Text(

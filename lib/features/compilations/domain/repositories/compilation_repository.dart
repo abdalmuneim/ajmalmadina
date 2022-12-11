@@ -11,7 +11,7 @@ abstract class CompilationRepository {
   Future<Either<Failure, List<CompilationType>>> getCompilationTypes();
   Future<Either<Failure, Compilation>> newCompilation({
     required String desc,
-    required File image,
+    required File? image,
     required String lat,
     required String long,
     required String type,

@@ -45,7 +45,7 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<BaseAuthRepository>(
-    () => AuthRespoitory(
+    () => AuthRepository(
         baseAuthRemoteDataSource: sl(),
         baseAuthLocalDataSource: sl(),
         networkInfo: sl()),

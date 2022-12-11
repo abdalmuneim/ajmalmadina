@@ -1,5 +1,6 @@
 class Fields {
   static const String id = "id";
+  static const String message = "message";
   static const String compilations = "compilations";
   static const String token = "token";
   static const String userId = "user_id";

@@ -1,5 +1,4 @@
 import 'package:butcity/core/language/app_translations.dart';
-import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/core/widgets/custom_text_form_field.dart';
 import 'package:butcity/core/widgets/my_location.dart';
@@ -23,11 +22,6 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
         appBar: AppBar(
           backgroundColor: Colors.green,
           title: Text(LocaleKeys.addNewCompilations.tr),
-          leading: IconButton(
-              onPressed: () {
-                Get.offAllNamed(Routes.myCompilations);
-              },
-              icon: const Icon(Icons.arrow_back)),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -137,7 +131,13 @@ class _NewCompilationsViewState extends State<NewCompilationsView> {
                     child: ListTile(
                       title: Text(LocaleKeys.compilationsType.tr),
                       trailing: controller.compilationTypes.isEmpty
-                          ? const CircularProgressIndicator()
+                          ? TextButton(
+                              onPressed: () => controller.getCompilationsType(),
+                              child: CustomText(
+                                text: LocaleKeys.chosesCompilationsType.tr,
+                                color: Colors.blue,
+                              ),
+                            )
                           : DropdownButtonHideUnderline(
                               child: DropdownButton(
                                 hint:

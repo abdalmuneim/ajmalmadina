@@ -4,6 +4,7 @@ import 'package:butcity/features/auth_feature/data/models/user_model.dart';
 import 'package:butcity/core/resources/app_strings.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:get_storage/get_storage.dart';
 
 abstract class BaseAuthLocalDataSource {
@@ -78,7 +79,7 @@ class AuthLocalDataSource implements BaseAuthLocalDataSource {
 
       return Future.value(data);
     } catch (e) {
-      throw EmptyCacheException();
+      throw UnauthorizedException();
     }
   }
 }

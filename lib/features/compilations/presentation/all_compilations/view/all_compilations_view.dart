@@ -6,7 +6,6 @@ import 'package:butcity/core/widgets/user_data_view_with_compilation.dart';
 import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
-import 'package:butcity/features/compilations/data/models/comment_model.dart';
 import 'package:butcity/features/compilations/domain/entities/compilation.dart';
 import 'package:butcity/features/compilations/presentation/all_compilations/controllers/all_compilations_controller.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +67,11 @@ class AllCompilationsView extends StatelessWidget {
                               fit: StackFit.expand,
                               children: [
                                 /// image compilations
-                                CustomNetworkImage(
-                                  url: compilation.image!,
-                                ),
+                                compilation.imageForWeb != null
+                                    ? CustomNetworkImage(
+                                        url: compilation.imageForWeb!,
+                                      )
+                                    : const SizedBox(),
 
                                 /// user data
                                 UserDataViewWithCompilation(

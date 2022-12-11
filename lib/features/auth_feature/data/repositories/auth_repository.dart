@@ -119,7 +119,6 @@ class AuthRespoitory implements BaseAuthRepository {
           confirmPassword: confirmPassword,
         );
         await baseAuthLocalDataSource.writeUser(user: user);
-        await baseAuthLocalDataSource.writeToken(token: user.token);
         return Right(user);
       } on ServerException catch (error) {
         return Left(ServerFailure(message: error.message));

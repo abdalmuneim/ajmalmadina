@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class CustomNetworkImage extends StatelessWidget {
   const CustomNetworkImage(
       {super.key, required this.url, this.borderRadius = 10});
-  final String url;
+  final String? url;
   final double borderRadius;
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CustomNetworkImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius),
       child: Image.network(
         fit: BoxFit.cover,
-        url,
+        url ?? "",
         errorBuilder: (BuildContext context, _, stackTrace) {
           return Center(
               child: Text(

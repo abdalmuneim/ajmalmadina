@@ -8,7 +8,7 @@ abstract class BaseAuthRepository {
   Future<Either<Failure, User>> register({
     required String name,
     required String email,
-    File? imageForWeb,
+    File? image,
     required String password,
     required String confirmPassword,
   });
@@ -22,7 +22,7 @@ abstract class BaseAuthRepository {
 
   Future<Either<Failure, User>> userUpdate({
     required String name,
-    File? imageForWeb,
+    File? image,
     required String password,
     required String confirmPassword,
   });

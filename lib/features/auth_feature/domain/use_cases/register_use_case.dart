@@ -14,14 +14,14 @@ class RegisterUseCase {
     required String email,
     required String password,
     required String confirmPassword,
-    File? imageForWeb,
+    File? image,
   }) async {
     return await baseAuthRepository.register(
       name: name,
       email: email,
       password: password,
       confirmPassword: confirmPassword,
-      imageForWeb: imageForWeb,
+      image: image,
     );
   }
 }

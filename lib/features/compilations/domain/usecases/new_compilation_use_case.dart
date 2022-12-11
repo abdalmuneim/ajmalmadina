@@ -12,7 +12,7 @@ class NewCompilationsUseCase {
 
   Future<Either<Failure, Compilation>> call({
     required String desc,
-    required File image,
+    required File? image,
     required String lat,
     required String long,
     required String type,

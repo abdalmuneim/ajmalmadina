@@ -57,7 +57,7 @@ class CompilationRepositoryImpl implements CompilationRepository {
   @override
   Future<Either<Failure, Compilation>> newCompilation(
       {required String desc,
-      required File image,
+      required File? image,
       required String lat,
       required String long,
       required String type}) async {

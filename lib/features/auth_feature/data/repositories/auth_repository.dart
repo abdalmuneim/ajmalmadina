@@ -11,12 +11,12 @@ import 'package:dartz/dartz.dart';
 import '../data_sources/auth_local_data_source.dart';
 import '../data_sources/auth_remote_data_source.dart';
 
-class AuthRespoitory implements BaseAuthRepository {
+class AuthRepository implements BaseAuthRepository {
   final BaseAuthRemoteDataSource baseAuthRemoteDataSource;
   final BaseAuthLocalDataSource baseAuthLocalDataSource;
   final NetworkInfo networkInfo;
 
-  AuthRespoitory({
+  AuthRepository({
     required this.baseAuthRemoteDataSource,
     required this.baseAuthLocalDataSource,
     required this.networkInfo,
@@ -27,7 +27,7 @@ class AuthRespoitory implements BaseAuthRepository {
     required String name,
     required String email,
     required String password,
-    File? imageForWeb,
+    File? image,
     required String confirmPassword,
   }) async {
     if (await networkInfo.isConnected) {
@@ -37,7 +37,7 @@ class AuthRespoitory implements BaseAuthRepository {
             email: email,
             password: password,
             confirmPassword: confirmPassword,
-            imageForWeb: imageForWeb);
+            image: image);
 
         await baseAuthLocalDataSource.writeUser(user: user);
         await baseAuthLocalDataSource.writeToken(token: user.token);
@@ -105,7 +105,7 @@ class AuthRespoitory implements BaseAuthRepository {
   @override
   Future<Either<Failure, UserModel>> userUpdate({
     required String name,
-    File? imageForWeb,
+    File? image,
     required String password,
     required String confirmPassword,
   }) async {
@@ -113,7 +113,7 @@ class AuthRespoitory implements BaseAuthRepository {
       try {
         final user = await baseAuthRemoteDataSource.userUpdate(
           name: name,
-          imageForWeb: imageForWeb,
+          image: image,
           token: await baseAuthLocalDataSource.readToken(),
           password: password,
           confirmPassword: confirmPassword,

@@ -44,7 +44,7 @@ class UserUpdateController extends GetxController {
       name: nameCtrl.text,
       confirmPassword: confPassCtrl.text,
       password: passCtrl.text,
-      imageForWeb: userImage,
+      image: userImage,
     );
 
     result.fold((failure) {

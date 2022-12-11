@@ -23,7 +23,7 @@ abstract class CompilationDataSource {
   /// new compilation
   Future<CompilationModel> newCompilation(
       {required String desc,
-      required File image,
+      required File? image,
       required String lat,
       required String long,
       required String type,
@@ -97,7 +97,7 @@ class CompilationDataSourceImpl extends GetConnect
   @override
   Future<CompilationModel> newCompilation(
       {required String desc,
-      required File image,
+      required File? image,
       required String lat,
       required String long,
       required String type,
@@ -112,7 +112,9 @@ class CompilationDataSourceImpl extends GetConnect
     request.fields['lat'] = lat;
     request.fields['long'] = long;
     request.fields['type'] = type;
-    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+    if (image != null) {
+      request.files.add(await http.MultipartFile.fromPath('image', image.path));
+    }
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token'

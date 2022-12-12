@@ -153,17 +153,14 @@ class NewCompilationController extends GetxController {
 
   getLocation() async {
     position = await determinePosition();
-    if (position == null) {
-      ToastManager.showError('يجب تفعيل الموقع');
+    if (position != null) {
+      long = position!.longitude.toString();
+      lat = position!.latitude.toString();
     }
 
-    long = position!.longitude.toString();
-    lat = position!.latitude.toString();
-
     LocationSettings locationSettings = const LocationSettings(
-      accuracy: LocationAccuracy.high, //accuracy of the location data
-      distanceFilter: 100, //minimum distance (measured in meters) a
-      //device must move horizontally before an update event is generated;
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
     );
     update();
     Geolocator.getPositionStream(locationSettings: locationSettings).listen(
@@ -178,6 +175,7 @@ class NewCompilationController extends GetxController {
   @override
   void onInit() async {
     await getCompilationsType();
+    getLocation();
     super.onInit();
   }
 

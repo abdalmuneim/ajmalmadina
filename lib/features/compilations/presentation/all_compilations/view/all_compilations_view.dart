@@ -6,7 +6,6 @@ import 'package:butcity/core/widgets/user_data_view_with_compilation.dart';
 import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
-import 'package:butcity/features/compilations/domain/entities/compilation.dart';
 import 'package:butcity/features/compilations/presentation/all_compilations/controllers/all_compilations_controller.dart';
 
 import 'package:flutter/material.dart';
@@ -43,47 +42,53 @@ class AllCompilationsView extends StatelessWidget {
                         fontWeight: FontWeightManager.bold,
                       ),
                     )
-                  : ListView.separated(
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 10),
-                      padding: const EdgeInsets.all(10),
-                      itemCount: controller.compilations.length,
-                      itemBuilder: (context, index) {
-                        final Compilation compilation =
-                            controller.compilations[index];
-                        return InkWell(
-                          onTap: () {
-                            Get.toNamed(
-                              Routes.comments,
-                              arguments: {
-                                Fields.complaintId: compilation.id.toString(),
-                                Fields.compilations: compilation,
-                              },
-                            );
-                          },
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 240,
-                            child: Stack(
-                              fit: StackFit.expand,
-                              children: [
-                                /// image compilations
-                                compilation.imageForWeb != null
-                                    ? CustomNetworkImage(
-                                        url: compilation.imageForWeb!,
-                                      )
-                                    : const SizedBox(),
+                  : SingleChildScrollView(
+                      child: Column(
+                        children: controller.compilations
+                            .map((compilation) => Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.toNamed(
+                                          Routes.comments,
+                                          arguments: {
+                                            Fields.complaintId:
+                                                compilation.id.toString(),
+                                            Fields.compilations: compilation,
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 5),
+                                        width: double.infinity,
+                                        height: 240,
+                                        child: Stack(
+                                          fit: StackFit.expand,
+                                          children: [
+                                            /// image compilations
+                                            compilation.imageForWeb != null
+                                                ? CustomNetworkImage(
+                                                    url: compilation
+                                                        .imageForWeb!,
+                                                  )
+                                                : const SizedBox(),
 
-                                /// user data
-                                UserDataViewWithCompilation(
-                                  user: compilation.user!,
-                                  compilation: compilation,
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                                            /// user data
+                                            UserDataViewWithCompilation(
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                              user: compilation.user!,
+                                              compilation: compilation,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ))
+                            .toList(),
+                      ),
                     ),
         ),
         drawer: MyDrawer(),

@@ -20,33 +20,61 @@ class CommentView extends StatelessWidget {
           body: Column(
             children: [
               /// image
-              SizedBox(
-                height: 250,
-                child: Stack(
-                  fit: StackFit.expand,
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      offset: Offset(0, .5),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+                child: Column(
                   children: [
-                    /// image compilations
-                    CustomNetworkImage(
-                        borderRadius: 0.0,
-                        url: controller.compilation!.imageForWeb!),
+                    SizedBox(
+                      height: 250,
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          /// image compilations
+                          CustomNetworkImage(
+                              borderRadius: 0.0,
+                              url: controller.compilation!.imageForWeb!),
 
-                    /// user data
-                    controller.user == null
-                        ? const SizedBox()
-                        : UserDataViewWithCompilation(
-                            user: controller.user!,
-                            compilation: controller.compilation!,
-                          ),
+                          /// user data
+                          controller.user == null
+                              ? const SizedBox()
+                              : UserDataViewWithCompilation(
+                                  addDescription: false,
+                                  user: controller.compilation!.user!,
+                                  compilation: controller.compilation!,
+                                ),
 
-                    Positioned(
-                      top: 0,
-                      child: IconButton(
-                          onPressed: () => Get.back(),
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                          )),
-                    )
+                          Positioned(
+                            top: 2,
+                            right: 2,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.green,
+                              child: IconButton(
+                                onPressed: () => Get.back(),
+                                icon: const Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomText(
+                          text: controller.compilation!.description!),
+                    ),
                   ],
                 ),
               ),
@@ -197,113 +225,3 @@ class CommentView extends StatelessWidget {
     });
   }
 }
-/* 
-
- Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverAppBar(
-                      flexibleSpace: FlexibleSpaceBar(
-                        background: ),
-                      centerTitle: true,
-                      expandedHeight: MediaQuery.of(context).size.height * 0.4,
-                    ),
-
-                    /// comments
-                    controller.isLoading
-                        ? SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                            childCount: 1,
-                            (context, index) => const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          ))
-                        : SliverList(
-                          
-                            delegate: SliverChildBuilderDelegate(
-
-                              (context, index) {
-                                Comment comment = controller.comment[index];
-                                
-                              },
-                              childCount: controller.comment.length,
-                            ),
-                          ),
-                  ],
-                ),
-              ),
-
-              /// add comment
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: IconButton(
-                      onPressed: () {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        controller.addComment();
-                      },
-                      icon: const RotatedBox(
-                          quarterTurns: 2,
-                          child: Icon(
-                            Icons.send,
-                            color: Colors.green,
-                          )),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        maxLines: 5,
-                        minLines: 1,
-                         
-                        onChanged: (value) => controller.onChange(value),
-                        style: const TextStyle(fontSize: 18),
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                              color: controller.addCommentTextError.isEmpty
-                                  ? Colors.green
-                                  : Colors.red,
-                              width: controller.addCommentTextError.isEmpty
-                                  ? 1
-                                  : 2,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                              color: controller.addCommentTextError.isEmpty
-                                  ? Colors.green
-                                  : Colors.red,
-                              width: controller.addCommentTextError.isEmpty
-                                  ? 1
-                                  : 2,
-                            ),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                            borderSide: BorderSide(
-                              color: controller.addCommentTextError.isEmpty
-                                  ? Colors.green
-                                  : Colors.red,
-                              width: controller.addCommentTextError.isEmpty
-                                  ? 1
-                                  : 2,
-                            ),
-                          ),
-                          hintText: LocaleKeys.addComment.tr,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
- */

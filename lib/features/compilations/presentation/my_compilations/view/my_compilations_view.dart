@@ -78,6 +78,8 @@ class MyCompilationsView extends StatelessWidget {
 
                                 /// user data
                                 UserDataViewWithCompilation(
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
                                     user: controller.user!,
                                     compilation: compilation)
                               ],

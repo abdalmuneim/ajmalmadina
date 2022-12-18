@@ -49,7 +49,9 @@ class CommentView extends StatelessWidget {
                               ? const SizedBox()
                               : UserDataViewWithCompilation(
                                   addDescription: false,
-                                  user: controller.compilation!.user!,
+                                  user: controller.compilation!.user == null
+                                      ? controller.user!
+                                      : controller.compilation!.user!,
                                   compilation: controller.compilation!,
                                 ),
 

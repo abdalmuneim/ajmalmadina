@@ -48,12 +48,14 @@ dependencies:
   google_maps_flutter: ^2.2.1
   permission_handler:
   cached_network_image: ^3.2.3
-  
+  readmore: ^2.2.0
   http: ^0.13.5
   shared_preferences: ^2.0.15
-
+  like_button: ^2.0.5
   flutter_launcher_icons: "^0.11.0"
   flutter_native_splash: ^2.2.16
+
+  
 flutter_native_splash:
   color: "#9acd32"
   color_dark: "#9acd32"

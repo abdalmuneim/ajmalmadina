@@ -48,7 +48,7 @@ class CompilationDataSourceImpl extends GetConnect
             double.tryParse(compilationModel.lat ?? '') ?? 0,
             double.tryParse(compilationModel.long ?? '') ?? 0);
         compilationModel =
-            compilationModel.copyWith(location: location[2].street);
+            compilationModel.copyWith(location: location[1].street);
         compilationModels.add(compilationModel);
       }
       return compilationModels;
@@ -78,7 +78,7 @@ class CompilationDataSourceImpl extends GetConnect
             double.tryParse(compilationModel.lat ?? '') ?? 0,
             double.tryParse(compilationModel.long ?? '') ?? 0);
         compilationModel =
-            compilationModel.copyWith(location: location[0].country);
+            compilationModel.copyWith(location: location[1].street);
         compilationModels.add(compilationModel);
       }
       return compilationModels;

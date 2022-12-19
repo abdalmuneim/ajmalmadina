@@ -8,16 +8,9 @@ class UserDataViewWithCompilation extends StatelessWidget {
   const UserDataViewWithCompilation({
     super.key,
     required this.user,
-    required this.compilation,
-    this.maxLines,
-    this.overflow,
-    this.addDescription = true,
   });
   final User user;
-  final Compilation compilation;
-  final int? maxLines;
-  final bool addDescription;
-  final TextOverflow? overflow;
+
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -138,27 +131,6 @@ class UserDataViewWithCompilation extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-
-              /// description compilation
-              addDescription
-                  ? Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.only(right: 20),
-                      decoration: const BoxDecoration(
-                        color: Colors.black38,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
-                      child: CustomText(
-                        text: compilation.description ?? "",
-                        maxLines: maxLines,
-                        overflow: overflow,
-                        color: Colors.white,
-                      ),
-                    )
-                  : const SizedBox(),
             ],
           ),
         ),

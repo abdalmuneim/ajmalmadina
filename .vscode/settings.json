@@ -1,6 +1,9 @@
 {
     "cSpell.words": [
-        "geolocator"
+        "butcity",
+        "dartz",
+        "geolocator",
+        "readmore"
     ],
     "files.autoSave": "onWindowChange",
     "dart.flutterGenerateLocalizationsOnSave": "all",

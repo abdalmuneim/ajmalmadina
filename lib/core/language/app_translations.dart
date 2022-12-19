@@ -17,10 +17,13 @@ abstract class LocaleKeys {
   static const incorrectEmailAddress = 'incorrectEmailAddress';
   static const incorrectNameAddress = 'incorrectNameAddress';
   static const emptyEmailAddress = 'emptyEmailAddress';
+  static const agree = 'agree';
   static const emptyPassword = 'emptyPassword';
   static const morePasswordChars = 'morePasswordChars';
   static const refresh = 'refresh';
   static const validateError = 'validateError';
+  static const readMore = 'readMore';
+  static const readLess = 'readLess';
   static const confirmPassValidate = 'confirmPassValidate';
   static const noImage = 'noImage';
   static const imageNotLoaded = 'imageNotLoaded';

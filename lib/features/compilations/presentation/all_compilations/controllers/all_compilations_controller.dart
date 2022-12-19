@@ -6,6 +6,7 @@ import 'package:butcity/features/auth_feature/domain/use_cases/get_user_use_case
 import 'package:butcity/features/compilations/domain/entities/compilation.dart';
 import 'package:butcity/features/compilations/domain/usecases/all_compilations_use_case.dart';
 import 'package:butcity/core/resources/toast_manager.dart';
+import 'package:butcity/features/compilations/domain/usecases/get_comments_use_case.dart';
 import 'package:get/get.dart';
 
 class AllCompilationsController extends GetxController {
@@ -20,9 +21,16 @@ class AllCompilationsController extends GetxController {
 
   User? user;
   bool isLoading = false;
-
   List<Compilation> _compilations = [];
   List<Compilation> get compilations => _compilations;
+  bool isReadMore = false;
+  String reedMore = LocaleKeys.readMore.tr;
+
+  readMoreOrLess(int index) {
+    isReadMore = !isReadMore;
+
+    update();
+  }
 
   /// get compilation
   Future getCompilations() async {

@@ -13,6 +13,8 @@ class CustomNetworkImage extends StatelessWidget {
       borderRadius: BorderRadius.circular(borderRadius),
       child: Image.network(
         fit: BoxFit.cover,
+        height: 240,
+        width: double.infinity,
         url ?? "",
         errorBuilder: (BuildContext context, _, stackTrace) {
           return Center(

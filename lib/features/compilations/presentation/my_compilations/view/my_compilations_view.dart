@@ -2,13 +2,13 @@ import 'package:butcity/core/const/fields.dart';
 import 'package:butcity/core/language/app_translations.dart';
 import 'package:butcity/core/resources/font_manager.dart';
 import 'package:butcity/core/routes/app_pages.dart';
-import 'package:butcity/core/widgets/like_button.dart';
-import 'package:butcity/core/widgets/user_data.dart';
-
 import 'package:butcity/core/widgets/custom_network_image.dart';
 import 'package:butcity/core/widgets/custom_text.dart';
+import 'package:butcity/core/widgets/like_button.dart';
+import 'package:butcity/core/widgets/user_data.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
 import 'package:butcity/features/compilations/presentation/my_compilations/controllers/my_compilations_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';
@@ -21,16 +21,8 @@ class MyCompilationsView extends StatelessWidget {
     return GetBuilder<MyCompilationsController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.myCompilations.tr),
+          title: Text(LocaleKeys.allCompilations.tr),
           centerTitle: true,
-          actions: [
-            RotatedBox(
-              quarterTurns: 2,
-              child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: const Icon(Icons.arrow_back)),
-            )
-          ],
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.green,
@@ -64,9 +56,9 @@ class MyCompilationsView extends StatelessWidget {
                                   children: [
                                     /// user data
                                     UserData(
-                                        compilation: compilation,
-                                        user: controller.user!),
-
+                                      compilation: compilation,
+                                      user: controller.user!,
+                                    ),
                                     const SizedBox(height: 10),
 
                                     /// description

@@ -39,7 +39,7 @@ class UserData extends StatelessWidget {
                             ]),
                         child: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            compilation.user!.imageForWeb,
+                            user.imageForWeb,
                           ),
                         )),
                     const SizedBox(width: 10),
@@ -49,7 +49,7 @@ class UserData extends StatelessWidget {
                       children: [
                         /// user name
                         CustomText(
-                          text: compilation.user!.name,
+                          text: user.name,
                           color: Colors.black,
                           fontSize: 22,
                           fontWeight: FontWeightManager.bold,

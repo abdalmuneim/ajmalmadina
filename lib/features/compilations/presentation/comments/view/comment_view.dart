@@ -85,9 +85,11 @@ class CommentView extends StatelessWidget {
                                                           backgroundImage:
                                                               NetworkImage(
                                                             controller
-                                                                .compilation!
-                                                                .user!
-                                                                .imageForWeb,
+                                                                    .compilation!
+                                                                    .user
+                                                                    ?.imageForWeb ??
+                                                                controller.user!
+                                                                    .imageForWeb,
                                                           ),
                                                         )),
                                                     const SizedBox(width: 10),
@@ -103,9 +105,11 @@ class CommentView extends StatelessWidget {
                                                       children: [
                                                         Text(
                                                           controller
-                                                              .compilation!
-                                                              .user!
-                                                              .name,
+                                                                  .compilation!
+                                                                  .user
+                                                                  ?.name ??
+                                                              controller
+                                                                  .user!.name,
                                                           style:
                                                               const TextStyle(
                                                                   color: Colors

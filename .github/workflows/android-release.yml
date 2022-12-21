@@ -26,9 +26,6 @@ jobs:
 
   # Created a new job version that will be executed before the build job
   build:
-    name: Create Android Build
-    needs: version
-
     # 6 Uses steps to represent a sequence of tasks that will be executed as part of job
 
     # to only merge if there is a merge action

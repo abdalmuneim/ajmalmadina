@@ -21,7 +21,7 @@ class MyCompilationsView extends StatelessWidget {
     return GetBuilder<MyCompilationsController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.allCompilations.tr),
+          title: Text(LocaleKeys.myCompilations.tr),
           centerTitle: true,
         ),
         floatingActionButton: FloatingActionButton(

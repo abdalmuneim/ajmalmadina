@@ -52,11 +52,25 @@ dependencies:
   http: ^0.13.5
   shared_preferences: ^2.0.15
   like_button: ^2.0.5
+  intl: ^0.17.0
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
   flutter_launcher_icons: "^0.11.0"
   flutter_native_splash: ^2.2.16
-  intl: ^0.18.0
-##
-  
+  change_app_package_name: ^1.1.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: assets/images/butcity.png
+
 flutter_native_splash:
   color: "#9acd32"
   color_dark: "#9acd32"
@@ -66,20 +80,6 @@ flutter_native_splash:
     icon_background_color_dark: "#9acd32"
 
   web: false
-
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: assets/images/butcity.png
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  intl: ^0.17.0
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

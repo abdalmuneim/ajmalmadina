@@ -1,4 +1,4 @@
-package com.ajmalmadina.nofal
+package com.ajmalmadina.seo
 
 import io.flutter.embedding.android.FlutterActivity
 

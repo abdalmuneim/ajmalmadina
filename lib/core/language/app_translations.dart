@@ -1,5 +1,5 @@
-import '../resources/app_strings.dart';
 import '../error/failures.dart';
+import '../resources/app_strings.dart';
 import 'ar_translation.dart';
 
 abstract class AppTranslation {
@@ -73,9 +73,9 @@ String mapFailureToMessage(Failure failure) {
     case ServerFailure:
       return failure.message;
     case NetworkFailure:
-      return AppStrings.NETWORK_FAILURE;
+      return AppStrings.networkFailure;
 
     default:
-      return AppStrings.UNEXPECTED_ERROR;
+      return AppStrings.unexpectedError;
   }
 }

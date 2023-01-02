@@ -5,7 +5,6 @@ import 'package:butcity/features/compilations/domain/entities/comment.dart';
 import 'package:butcity/features/compilations/presentation/comments/controllers/comment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:intl/intl.dart' as intl;
 
 class CommentView extends StatelessWidget {

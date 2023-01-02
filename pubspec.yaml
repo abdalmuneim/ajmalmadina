@@ -54,7 +54,8 @@ dependencies:
   like_button: ^2.0.5
   flutter_launcher_icons: "^0.11.0"
   flutter_native_splash: ^2.2.16
-
+  intl: ^0.18.0
+##
   
 flutter_native_splash:
   color: "#9acd32"

@@ -1,6 +1,6 @@
+import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:butcity/core/routes/app_pages.dart';
 import 'package:butcity/features/auth_feature/domain/use_cases/login_use_case.dart';
-import 'package:butcity/core/resources/toast_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

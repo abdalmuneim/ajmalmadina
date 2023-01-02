@@ -8,8 +8,6 @@ import 'package:butcity/core/widgets/like_button.dart';
 import 'package:butcity/core/widgets/user_data.dart';
 import 'package:butcity/features/auth_feature/presentation/drawer/views/my_drawer_view.dart';
 import 'package:butcity/features/compilations/presentation/all_compilations/controllers/all_compilations_controller.dart';
-import 'package:intl/intl.dart' as intl;
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:readmore/readmore.dart';

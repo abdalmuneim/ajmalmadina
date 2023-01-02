@@ -27,6 +27,17 @@ jobs:
     # Uses steps to represent a sequence of tasks that will be executed as part of job
     steps: 
       # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
+
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> $GITHUB_ENV
+      
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.action_state }}" # This will output 'yellow'
+      
       - uses: actions/checkout@v3
 
       # Sets up Java so your job can use it for the Flutter app build

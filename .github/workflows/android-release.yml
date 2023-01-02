@@ -12,6 +12,7 @@ on:
   # push:
   #   branches: [ "main" ]
   pull_request:
+    types: [ closed ]
     branches: ["main"]
 
   # 3 Allows you to run this workflow manually from the Actions tab from your GitHub repo

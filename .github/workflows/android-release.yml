@@ -27,16 +27,6 @@ jobs:
     # Uses steps to represent a sequence of tasks that will be executed as part of job
     steps: 
       # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
-
-      - name: Set the value
-        id: step_one
-        run: |
-          echo "action_state=yellow" >> $GITHUB_ENV
-      
-      - name: Use the value
-        id: step_two
-        run: |
-          echo "${{ env.action_state }}" # This will output 'yellow'
       
       - uses: actions/checkout@v3
 
@@ -141,10 +131,10 @@ jobs:
       # Used the upload-google.play@v1 workflow with the PLAYSTORE_ACCOUNT_KEY secret,
       # your app package name, the track in which you want to upload the build and its status
       # PLAYSTORE_ACCOUNT_KEY can be obtained by the following steps https://drive.google.com/file/d/1E2GzLN_Tl06qowA8j6_3ohTjdLWHEX7t/view?usp=sharing
-      - name: Release Build to internal track
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
-          packageName: com.app.sharrae
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
-          track: internal
+      # - name: Release Build to internal track
+      #   uses: r0adkll/upload-google-play@v1
+      #   with:
+      #     serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+      #     packageName: com.app.sharrae
+      #     releaseFiles: build/app/outputs/bundle/release/app-release.aab
+      #     track: internal

@@ -23,6 +23,8 @@ class AppPages {
 
   static String initial = Routes.splash;
 
+  /// initial rout
+
   static final routes = [
     /// splash
     GetPage(
